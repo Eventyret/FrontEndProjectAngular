@@ -8,21 +8,6 @@ h2 {
   position: relartive;
   z-index: 3;
 }
-
-h2 span {
-  font-family: 'Kumar One', cursive;
-  display: block;
-  font-size: 45px;
-  text-transform: none;
-  margin-bottom: 20px;
-  margin-top: 30px;
-}
-
-h2 a {
-  color: #fff;
-  font-weight: bold;
-}
-
 section {
   float: left;
   width: 100%;
@@ -44,6 +29,20 @@ section:before {
   transform: scale(2);
   -ms-transform: scale(2);
   -webkit-transform: scale(2);
+}
+
+h2 span {
+  font-family: 'Kumar One', cursive;
+  display: block;
+  font-size: 45px;
+  text-transform: none;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+h2 a {
+  color: #fff;
+  font-weight: bold;
 }
 
 h3 {

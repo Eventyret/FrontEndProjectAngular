@@ -1,0 +1,24 @@
+<input (keyup)="searchTerm$.next($event.target.value)">
+
+<ul *ngIf="results">
+  <li >
+    <a href="{{ result.latest }}" target="_blank">
+      {{ result.name }}
+    </a>
+  </li>
+</ul>
+
+<div class="col-md-4" *ngFor="let result of results | slice:0:9">
+  <h3 class="text-center mb-5">{{ result.Title }}</h3>
+  <div class="card card-01 height-fix">
+    <img class="card-img-top" src="{{ result.Poster }}" alt="Card image cap">
+    <div class="card-img-overlay">
+      <h4 class="card-title">
+        <strong>{{ result.Title }}</strong>
+      </h4>
+      <p class="card-text">{{result.Plot | words : 25 }}</p>
+      <p class="card-text">
+        <a href="#" class="fa fa-bookmark-o"></a>
+        <a class="fa fa-heart-o" href="#"></a>
+      </p>
+    </div>

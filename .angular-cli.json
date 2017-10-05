@@ -43,7 +43,7 @@
   "lint": [
     {
       "project": "src/tsconfig.app.json",
-      "exclude": "**/node_modules/**"r
+      "exclude": "**/node_modules/**"
     },
     {
       "project": "src/tsconfig.spec.json",
