@@ -1,6 +1,13 @@
 
 <section>
         <div class="container">
+            <div class="card card-inverse" style="background-color: #333; border-color: #333;">
+                <div class="card-block">
+                    <h3 class="card-title">Card Title</h3>
+                    <input (keyup)="searchTerm$.next($event.target.value)">
+                    <a href="#" class="btn btn-primary">This is a Button</a>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-4" *ngFor="let movie of movies">
                     <h3 class="text-center mb-5">{{ movie.title }}</h3>

@@ -23,7 +23,7 @@ export class SearchService {
 
   searchEntries(term) {
     return this.http
-      .get(this.baseUrl + this.queryUrl + term + + this.fullPlot + this.apiKey)
+      .get(this.baseUrl + this.queryUrl + term + this.fullPlot + this.apiKey)
       .map(res => res.json());
   }
 }
