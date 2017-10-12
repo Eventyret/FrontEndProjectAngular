@@ -14,6 +14,7 @@ export class SearchComponent {
   constructor(private searchService: SearchService) {
     this.searchService.search(this.searchTerm$)
       .subscribe(results => {
+        console.log(results)
         this.results = results.results;
       });
   }

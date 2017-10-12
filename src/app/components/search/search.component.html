@@ -1,0 +1,18 @@
+    <input (keyup)="searchTerm$.next($event.target.value)">
+
+    <div class="col-md-4" *ngFor="let result of results">
+        <h3 class="text-center mb-5">{{ result.title }}</h3>
+        <div class="card card-01 height-fix">
+            <img class="card-img-top" src="https://eventyret.uk{{movie.images[0].url}}" alt="Card image cap">
+            <div class="card-img-overlay">
+                <h4 class="card-title">
+                    <strong>{{ result.title }}</strong>
+                </h4>
+                <p class="card-text">{{result.overview | words : 25 }}</p>
+                <p class="card-text">
+                    <a href="#" class="fa fa-bookmark-o"></a>
+                    <a class="fa fa-heart-o" href="#"></a>
+                </p>
+            </div>
+        </div>
+    </div>

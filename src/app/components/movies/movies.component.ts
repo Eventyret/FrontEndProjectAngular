@@ -11,7 +11,7 @@ export class MoviesComponent {
     movies: any[];
 
     constructor(public movieService: MovieService) {
-        this.movieService.getUsers().subscribe(movies => {
+        this.movieService.getMovies().subscribe(movies => {
             this.movies = movies;
         });
     }
