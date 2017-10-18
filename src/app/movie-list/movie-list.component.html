@@ -1,1 +1,2 @@
-<button (click)="searchMovies('Home Alone')">Find Movies</button>
+<input class="search" placeholder="Find Movies" [(ngModel)]="searchQuery">
+<button (click)="searchMovies(searchQuery)" type="button">Find Movies</button>
