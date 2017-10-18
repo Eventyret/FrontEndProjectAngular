@@ -1,2 +1,49 @@
-<input class="search" placeholder="Find Movies" [(ngModel)]="searchQuery">
-<button (click)="searchMovies(searchQuery)" type="button">Find Movies</button>
+<div *ngIf="searching">
+  <p>Loading</p>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <h2>Stylish Search Box</h2>
+      <div id="custom-search-input">
+        <div class="input-group col-md-12">
+          <input class="search" [(ngModel)]="searchQuery" name="search" placeholder="Search for Movies">
+          <span class="input-group-btn">
+            <button (click)="searchMovies(searchQuery)" class="searchButton btn btn-success" type="button">Find Images</button>
+          </span>
+        </div>
+      </div>
+      <div id="custom-search-input">
+        <div class="input-group col-md-12">
+          <span class="input-group-btn">
+<button (click)="ownedMovies()" class="btn btn-success" type="button">Find Own Collection</button>
+
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+<div class="col-md-4" *ngFor="let movie of movies">
+<div class="col-md-4" *ngFor="let movie of ownMovies">
+        <h3 class="text-center mb-5">{{movie.Title}}</h3>
+        <div class="card card-01 height-fix">
+          <img class="card-img-top" src="{{movie.Poster}}" alt="{{movie.Title}}" onError="this.src='http://www.armanettiaddison.com/images/noimagefound.png';">
+          <div class="card-img-overlay">
+            <h4 class="card-title">
+              <strong>{{Movie.Title}}</strong>
+            </h4>
+            <p class="card-text">Captain Jack Sparrow searches for the trident of Poseidon.</p>
+            <p class="card-text">
+              <a href="#" class="fa fa-bookmark-o"></a>
+              <a class="fa fa-heart-o" href="#"></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
