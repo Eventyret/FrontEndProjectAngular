@@ -5,9 +5,10 @@
 /tmp
 /out-tsc
 
+
 # dependencies
 /node_modules
-
+/src/enviroments/enviroment.ts
 # IDEs and editors
 /.idea
 .project
