@@ -4,11 +4,10 @@
 /dist
 /tmp
 /out-tsc
-
+/src/environments/environments.ts
 
 # dependencies
 /node_modules
-/src/enviroments/enviroment.ts
 # IDEs and editors
 /.idea
 .project
