@@ -1,5 +1,5 @@
-import { MoviesService } from './../services/movies.service';
 import { Component, OnInit } from '@angular/core';
+import { OmdbService } from './../services/omdb.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -9,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class MovieListComponent implements OnInit {
   movies: any[];
 
-  constructor(private movieService: MoviesService) { 
+  constructor(private omdbService: OmdbService) { 
 
+  }
+
+  searchMovies(query: string){
+    return this.omdbService.getMovies(query).subscribe(
+      data => console.log(data),
+      error => console.log(error),
+      () => console.log("Request Complete")
+    )
   }
 
   ngOnInit() {
