@@ -1,7 +1,6 @@
 <div *ngIf="searching">
   <p>Loading</p>
 </div>
-
 <section>
   <div class="container">
     <div class="row">
@@ -17,17 +16,14 @@
       <div id="custom-search-input">
         <div class="input-group col-md-12">
           <span class="input-group-btn">
-<button (click)="ownedMovies()" class="btn btn-success" type="button">Find Own Collection</button>
-
+            <button (click)="ownedMovies()" class="btn btn-success" type="button">Find Own Collection</button>
           </span>
         </div>
       </div>
-
     </div>
 
     <div class="row">
-<div class="col-md-4" *ngFor="let movie of movies">
-<div class="col-md-4" *ngFor="let movie of ownMovies">
+      <div class="col-md-4" *ngFor="let movie of movies">
         <h3 class="text-center mb-5">{{movie.Title}}</h3>
         <div class="card card-01 height-fix">
           <img class="card-img-top" src="{{movie.Poster}}" alt="{{movie.Title}}" onError="this.src='http://www.armanettiaddison.com/images/noimagefound.png';">
@@ -43,7 +39,6 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </section>
