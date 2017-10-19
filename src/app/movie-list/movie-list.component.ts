@@ -1,6 +1,7 @@
 import { MovieService } from './../services/movies.service';
 import { Component, OnInit } from '@angular/core';
 import { OmdbService } from './../services/omdb.service';
+import { TruncateModule } from 'ng2-truncate';
 
 @Component({
   selector: 'app-movie-list',
