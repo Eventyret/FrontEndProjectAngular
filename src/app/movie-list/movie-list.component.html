@@ -30,9 +30,15 @@
             <h4 class="card-title">
               <strong>{{movie.Title}}</strong>
             </h4>
-            <p class="card-text">Captain Jack Sparrow searches for the trident of Poseidon.</p>
             <p class="card-text">
-              <a href="#"><i class="fa fa-bookmark-o"></i></a>
+<a (click)="storeMovie(movie.imdbID)" href="#" routerLink="/info">
+
+
+  <i class="fa fa-bookmark-o"></i>
+
+</a>
+
+
               <a href="#"><i class="fa fa-heart-o"></i></a>
             </p>
           </div>

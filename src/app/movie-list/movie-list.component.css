@@ -87,8 +87,6 @@ h3 {
   font-size: 22px;
   margin-right: 18px;
 }
-
-i[class^="icon-"]:before {
-  display: inline-block;
+a {
   text-decoration: none;
 }

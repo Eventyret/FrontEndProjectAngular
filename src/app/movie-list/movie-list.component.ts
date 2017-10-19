@@ -11,6 +11,7 @@ import { TruncateModule } from 'ng2-truncate';
 export class MovieListComponent implements OnInit {
   movies: any[];
   ownMovies: any[];
+  imdbID: any[];
   moviesFound: boolean = false;
   searching: boolean = false;
 
@@ -22,11 +23,6 @@ export class MovieListComponent implements OnInit {
     this.moviesFound = true;
     this.movies = data.Search;
     console.log(data.Search);
-  }
-
-  checkSuccess(data){
-    this.moviesFound = true;
-    this.movies = data
   }
 
   handleError(error){
@@ -43,13 +39,10 @@ export class MovieListComponent implements OnInit {
     )
   }
 
-  ownedMovies(){
-    this.searching = true;
-    this.movieService.checkMovies().subscribe(movies => {
-      this.ownMovies = movies;
-      console.log(movies)
-    });
-  }
+  storeMovie(imdbID){
+      sessionStorage.setItem("imdbID", imdbID);
+      console.log(imdbID)
+    }
 
   ngOnInit() {
   }

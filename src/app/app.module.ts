@@ -10,6 +10,12 @@ import { AppComponent } from './app.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleDisplayComponent } from './single-display/single-display.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  {path:'', component:MovieListComponent},
+  {path:'info', component:SingleDisplayComponent}
+]
 
 @NgModule({
   declarations: [
@@ -22,8 +28,9 @@ import { SingleDisplayComponent } from './single-display/single-display.componen
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
-    TruncateModule
-    
+    TruncateModule,
+    RouterModule.forRoot(appRoutes),
+
   ],
   providers: [
     OmdbService,
