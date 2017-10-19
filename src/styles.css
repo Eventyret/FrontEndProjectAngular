@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  float: left;
+  width: 100%;
+  padding: 30px 0;
+  position: relative;
+  background: #6F8D8A;
+    background: url("https://static.pexels.com/photos/247599/pexels-photo-247599.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}
