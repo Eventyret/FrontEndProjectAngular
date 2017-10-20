@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SingleDisplayComponent } from './single-display/single-display.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFound404Component } from './page-not-found-404/page-not-found-404.component';
+import { CapitalizePipe } from './trim.pipe';
 
 const appRoutes: Routes = [
   {path: '', component: MovieListComponent},
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     AppComponent,
     MovieListComponent,
     SingleDisplayComponent,
-    PageNotFound404Component
+    PageNotFound404Component,
+    CapitalizePipe,
   ],
   imports: [
     BrowserModule,

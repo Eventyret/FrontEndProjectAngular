@@ -1,40 +1,44 @@
 <div *ngIf="searching">
   <p>Loading</p>
 </div>
-<div class="container">
-    <div class="col-xs-12">
-            <div class="jumbotron vertical-center" id="search">
-              <div class="row">
-                <form id="searchForm">
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" placeholder="Search for any move or series and press enter..."
-                      autofocus required>
-                    <span class="input-group-btn">
-                      <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery)" class="btn btn-primary" value="Go">
-                    </span>
+              <section class="row-section">
+                <div class="container">
+                  <div class="row">
+                    <h2 class="text-center">
+                      <span>Dragable Listing</span>Created with
+                      <i class="fa fa-heart"></i> from
+                      <a href="http://grafreez.com"> Grafreez.com</a>
+                    </h2>
                   </div>
-                </form>
-              </div>
-            </div>
-    </div>
-  <div class="row MovieResults">
-    <div class="col-sm-4" *ngFor="let movie of movies | slice:0:9;">
-              <div class="card card-01 height-fix">
-                <img class="card-img-top" src="{{movie.Poster}}" alt="{{movie.Title}}" onError="this.src='http://www.armanettiaddison.com/images/noimagefound.png';">
-                <div class="card-img-overlay">
-                  <h4 class="card-title">
-                    <strong>{{movie.Title}}</strong>
-                  </h4>
-                  <p class="card-text">
-                    <a (click)="storeMovie(movie.imdbID)" href="#" routerLink="/info">
-                      <i class="fa fa-info-circle"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fa fa-heart-o"></i>
-                    </a>
-                  </p>
+                      <div class="col-xs-12">
+                        <div class="jumbotron vertical-center" id="search">
+                          <form id="searchForm">
+                            <div class="input-group input-group-lg">
+                              <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" placeholder="Search for any move or series and press enter..."
+                                autofocus required>
+                              <span class="input-group-btn">
+                                <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery)" class="btn btn-primary" value="Go">
+                              </span>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                  <div class="col-md-10 offset-md-1 row-block">
+                    <ul id="sortable" *ngFor="let movie of movies | slice:0:9;">
+                      <p>
+                        <div class="media">
+                          <div class="media-left align-self-center">
+                            <img class="rounded-circle" src="{{movie.Poster}}">
+                          </div>
+                          <div class="media-body">
+                            <h4>{{movie.Title}}</h4>
+                              <p>Release Year: {{movie.Year}}</p>
+                          </div>
+                          <div class="media-right align-self-center">
+                            <a (click)="storeMovie(movie.imdbID)" href="#" class="btn btn-default" routerLink="/info">{{movie.Type | capitalize}} Details</a>
+                          </div>
+                        </div>
+                      </ul>
+                  </div>
                 </div>
-              </div>
-    </div>
-  </div>
-</div>
+              </section>

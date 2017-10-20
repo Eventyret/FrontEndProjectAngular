@@ -2,6 +2,7 @@ import { MovieService } from './../services/movies.service';
 import { Component, OnInit } from '@angular/core';
 import { OmdbService } from './../services/omdb.service';
 import { TruncateModule } from 'ng2-truncate';
+import { CapitalizePipe } from '../trim.pipe';
 
 @Component({
   selector: 'app-movie-list',
@@ -24,6 +25,11 @@ export class MovieListComponent implements OnInit {
     this.movies = data.Search;
     console.log(data.Search);
   }
+  handleOwnMovies(info){
+    this.moviesFound = true;
+    this. ownMovies = info;
+    console.log(info);
+  }
 
   handleError(error){
     console.log(error);
@@ -36,8 +42,16 @@ export class MovieListComponent implements OnInit {
       data => this.handleSuccess(data),
       error => this.handleError(error),
       () => this.searching = false
-    )
+    );
   }
+
+checkOwnMovies(){
+  return this.movieService.checkMovies().subscribe(
+    info => this.handleOwnMovies(info),
+    error => this.handleError(error),
+    () => this.searching = false
+  );
+}
 
   storeMovie(imdbID){
       sessionStorage.setItem("imdbID", imdbID);
@@ -45,6 +59,7 @@ export class MovieListComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.checkOwnMovies();
   }
 
 }

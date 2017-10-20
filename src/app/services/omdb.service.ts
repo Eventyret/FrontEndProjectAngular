@@ -18,7 +18,7 @@ export class OmdbService {
    }
   
    getMovies(query) {
-     return this.http.get(this.API_URL + '?s=' + query + this.endstring)
+     return this.http.get(this.API_URL + '?s=' + query + this.endstring + '&type=movie' )
       .map(res => res.json());
   }
 
