@@ -1,50 +1,40 @@
 <div *ngIf="searching">
   <p>Loading</p>
 </div>
-<section>
-  <div class="container">
-    <div class="row">
-      <h2>Stylish Search Box</h2>
-      <div id="custom-search-input">
-        <div class="input-group col-md-12">
-          <input class="search" [(ngModel)]="searchQuery" name="search" placeholder="Search for Movies">
-          <span class="input-group-btn">
-            <button (click)="searchMovies(searchQuery)" class="searchButton btn btn-success" type="button">Find Images</button>
-          </span>
-        </div>
-      </div>
-      <div id="custom-search-input">
-        <div class="input-group col-md-12">
-          <span class="input-group-btn">
-            <button (click)="ownedMovies()" class="btn btn-success" type="button">Find Own Collection</button>
-          </span>
-        </div>
-      </div>
+<div class="container">
+    <div class="col-xs-12">
+            <div class="jumbotron vertical-center" id="search">
+              <div class="row">
+                <form id="searchForm">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" placeholder="Search for any move or series and press enter..."
+                      autofocus required>
+                    <span class="input-group-btn">
+                      <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery)" class="btn btn-primary" value="Go">
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-4" *ngFor="let movie of movies | slice:0:9;">
-        <div class="card card-01 height-fix">
-          <img class="card-img-top" src="{{movie.Poster}}" alt="{{movie.Title}}" onError="this.src='http://www.armanettiaddison.com/images/noimagefound.png';">
-          <div class="card-img-overlay">
-            <h4 class="card-title">
-              <strong>{{movie.Title}}</strong>
-            </h4>
-            <p class="card-text">
-<a (click)="storeMovie(movie.imdbID)" href="#" routerLink="/info">
-
-
-  <i class="fa fa-bookmark-o"></i>
-
-</a>
-
-
-              <a href="#"><i class="fa fa-heart-o"></i></a>
-            </p>
-          </div>
-        </div>
-      </div>
+  <div class="row MovieResults">
+    <div class="col-sm-4" *ngFor="let movie of movies | slice:0:9;">
+              <div class="card card-01 height-fix">
+                <img class="card-img-top" src="{{movie.Poster}}" alt="{{movie.Title}}" onError="this.src='http://www.armanettiaddison.com/images/noimagefound.png';">
+                <div class="card-img-overlay">
+                  <h4 class="card-title">
+                    <strong>{{movie.Title}}</strong>
+                  </h4>
+                  <p class="card-text">
+                    <a (click)="storeMovie(movie.imdbID)" href="#" routerLink="/info">
+                      <i class="fa fa-info-circle"></i>
+                    </a>
+                    <a href="#">
+                      <i class="fa fa-heart-o"></i>
+                    </a>
+                  </p>
+                </div>
+              </div>
     </div>
   </div>
-
-</section>
+</div>

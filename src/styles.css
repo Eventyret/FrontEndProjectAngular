@@ -1,13 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
+/*Importing Google Fonts*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/*Media Queries for responsive fonts*/
+
+@media all and (max-width: 1200px) {
+  body {
+    font-size: 1.33vw;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  body {
+    font-size: 1.6em;
+  }
+}
+
+@media all and (max-width: 500px) {
+  body {
+    font-size: 3.2vw;
+  }
+}
+
+html {
+  height: 100%;
+}
+
+
+/*Common styles used on both pages*/
+
 body {
-  float: left;
-  width: 100%;
-  padding: 30px 0;
-  position: relative;
-  background: #6F8D8A;
-    background: url("https://static.pexels.com/photos/247599/pexels-photo-247599.jpeg");
-    background-repeat: no-repeat;
-    background-size: cover;
+  min-height: 100%;
+  background-color: rgba(62, 69, 81, 1)
+}
 
+h1 {
+  font-family: "Open Sans";
+  font-size: 40px;
+}
 
+h2 {
+  font-family: "Open Sans";
+  font-size: 32px;
+}
+
+h3 {
+  font-family: "Open Sans";
+  font-size: 28px;
+}
+
+h4 {
+  font-family: "Open Sans";
+  font-size: 24px
+}
+
+h5 {
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: 600;
+}
+
+p li ul {
+  font-family: "Open Sans";
+  /* Fallback */
+  font-size: 16px;
+  /* For responsiveness */
+  font-size: 2vmin;
 }
