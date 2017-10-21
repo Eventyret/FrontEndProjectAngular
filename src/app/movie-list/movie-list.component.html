@@ -35,7 +35,7 @@
                               <p>Release Year: {{movie.Year}}</p>
                           </div>
                           <div class="media-right align-self-center">
-                            <a (click)="storeMovie(movie.imdbID)" href="#" class="btn btn-default" routerLink="/info">{{movie.Type | capitalize}} Details</a>
+                            <a (click)="storeMovie(movie.imdbID, movie.Type)" href="#" class="btn btn-default" routerLink="/info">{{movie.Type | capitalize}} Details</a>
                           </div>
                         </div>
                       </ul>

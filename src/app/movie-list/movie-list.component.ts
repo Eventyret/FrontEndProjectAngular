@@ -13,6 +13,7 @@ export class MovieListComponent implements OnInit {
   movies: any[];
   ownMovies: any[];
   imdbID: any[];
+  type: string;
   moviesFound: boolean = false;
   searching: boolean = false;
 
@@ -53,8 +54,10 @@ checkOwnMovies(){
   );
 }
 
-  storeMovie(imdbID){
+  storeMovie(imdbID, type ){
       sessionStorage.setItem("imdbID", imdbID);
+      sessionStorage.setItem("type", type )
+      
       console.log(imdbID)
     }
 

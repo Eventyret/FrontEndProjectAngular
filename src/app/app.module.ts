@@ -14,7 +14,7 @@ import { SingleDisplayComponent } from './single-display/single-display.componen
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFound404Component } from './page-not-found-404/page-not-found-404.component';
 import { CapitalizePipe } from './trim.pipe';
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToModule } from 'ng2-scroll-to-el';
 
 const appRoutes: Routes = [
   {path: '', component: MovieListComponent},
@@ -37,7 +37,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     TruncateModule,
     RouterModule.forRoot(appRoutes),
-    ScrollToModule.forRoot(),
+    ScrollToModule.forRoot()
 
   ],
   providers: [
