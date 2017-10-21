@@ -1,3 +1,4 @@
+import { FanartService } from './services/fanart.service';
 import { HttpModule } from '@angular/http';
 import { SeriesService } from './services/series.service';
 import { MovieService } from './services/movies.service';
@@ -13,6 +14,7 @@ import { SingleDisplayComponent } from './single-display/single-display.componen
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFound404Component } from './page-not-found-404/page-not-found-404.component';
 import { CapitalizePipe } from './trim.pipe';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 const appRoutes: Routes = [
   {path: '', component: MovieListComponent},
@@ -35,12 +37,14 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     TruncateModule,
     RouterModule.forRoot(appRoutes),
+    ScrollToModule.forRoot(),
 
   ],
   providers: [
     OmdbService,
     MovieService,
-    SeriesService
+    SeriesService,
+    FanartService
   ],
   bootstrap: [AppComponent]
 })

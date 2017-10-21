@@ -1,62 +1,208 @@
-@import url('https://fonts.googleapis.com/css?family=Kumar+One');
-.row-section h2 {
-  float: left;
+header {
+  text-align: center;
+  color: #fff;
+  background: #18bc9c;
+  position: fixed;
   width: 100%;
-  color: #fff;
-  margin-bottom: 30px;
-  font-size: 14px;
+  z-index: 1;
+  height: 90%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
 }
 
-.row-section h2 span {
-  font-family: 'Kumar One', cursive;
+.content-wrapper {
+  background-color: white;
+  top: 90%;
+  min-height: 12%;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+}
+
+
+/* HERE ENDS THE MAGIC */
+
+header .container {
+  padding-top: 40vh;
+  padding-bottom: 50px;
+}
+
+header img {
   display: block;
-  font-size: 45px;
-  text-transform: none;
-  margin-bottom: 20px;
-  margin-top: 30px;
+  margin: 0 auto 20px;
 }
 
-.row-section h2 a {
-  color: #d2abce;
+header .intro-text .name {
+  display: block;
+  text-transform: uppercase;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2em;
+  font-weight: 700;
 }
 
-.row-section .row-block {
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 50px;
+header .intro-text .skills {
+  font-size: 1.25em;
+  font-weight: 300;
 }
 
-.row-section .row-block ul {
+section {
+  padding: 100px 0;
+  width: 100%;
+}
+
+section h2 {
   margin: 0;
+  font-size: 3em;
+}
+
+hr.star-light,
+hr.star-primary {
+  margin: 25px auto 30px;
   padding: 0;
+  max-width: 250px;
+  border: 0;
+  border-top: solid 5px;
+  text-align: center;
 }
 
-.row-section .row-block ul li {
-  list-style: none;
-  margin-bottom: 20px;
+hr.star-light:after,
+hr.star-primary:after {
+  content: "\f005";
+  display: inline-block;
+  position: relative;
+  top: -.8em;
+  padding: 0 .25em;
+  font-family: FontAwesome;
+  font-size: 2em;
 }
 
-.row-section .row-block ul li:last-child {
-  margin-bottom: 0;
+hr.star-light {
+  border-color: #fff;
 }
 
-.row-section .row-block ul li:hover {
-  cursor: grabbing;
-}
-
-.row-section .row-block .media {
-  border: 1px solid #d5dbdd;
-  padding: 5px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.04);
-  background: #fff;
-}
-
-.btn-default {
-  background: #6B456A;
+hr.star-light:after {
   color: #fff;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
+  background-color: #18bc9c;
+}
+
+hr.star-primary {
+  border-color: #2c3e50;
+}
+
+hr.star-primary:after {
+  color: #2c3e50;
+  background-color: #fff;
+}
+
+section.primary h2 {
+  color: #2c3e50;
+}
+
+section.success {
+  background-color: #18bc9c;
+  color: #fff;
+}
+.card-title {
+  color: #212121;
+}
+#clear-banner {
+  width: 50%;
+}
+.arrow-wrap {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  margin-left: -5em;
+  background: #111;
+  width: 10em;
+  height: 10em;
+  padding: 4em 2em;
+  border-radius: 50%;
+  font-size: 0.5em;
+  display: block;
+  box-shadow: 0px 0px 5px 0px #333;
+  bottom: 6%;
+}
+
+.arrow {
+  float: left;
+  position: relative;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 3em 3em 0 3em;
+  border-color: #ffffff transparent transparent transparent;
+  -webkit-transform: rotate(360deg)
+}
+
+.arrow:after {
+  content: '';
+  position: absolute;
+  top: -3.2em;
+  left: -3em;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 3em 3em 0 3em;
+  border-color: #111 transparent transparent transparent;
+  -webkit-transform: rotate(360deg)
+}
+
+.hint {
+  position: absolute;
+  top: 0.6em;
+  width: 100%;
+  left: 0;
+  font-size: 2em;
+  font-style: italic;
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+}
+
+.arrow-wrap:hover .hint {
+  opacity: 1;
+}
+
+@-webkit-keyframes arrows {
+  0% {
+    top: 0;
+  }
+  10% {
+    top: 12%;
+  }
+  20% {
+    top: 0;
+  }
+  30% {
+    top: 12%;
+  }
+  40% {
+    top: -12%;
+  }
+  50% {
+    top: 12%;
+  }
+  60% {
+    top: 0;
+  }
+  70% {
+    top: 12%;
+  }
+  80% {
+    top: -12%;
+  }
+  90% {
+    top: 12%;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+.arrow-wrap .arrow {
+  -webkit-animation: arrows 2.8s 0.4s;
+  -webkit-animation-delay: 3s;
 }
 
