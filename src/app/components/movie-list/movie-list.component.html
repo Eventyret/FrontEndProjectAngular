@@ -24,6 +24,7 @@
                         </div>
                       </div>
                   <div class="col-md-10 offset-md-1 row-block">
+                    <h1 *ngIf="statusMsg">{{statusMsg}}</h1>
                     <ul id="sortable" *ngFor="let movie of movies | slice:0:9;">
                       <p>
                         <div class="media">

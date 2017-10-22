@@ -8,11 +8,11 @@ import { NgModule } from '@angular/core';
 import { TruncateModule } from 'ng2-truncate';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { MovieListComponent } from './movie-list/movie-list.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SingleDisplayComponent } from './single-display/single-display.component';
+import { SingleDisplayComponent } from './components/single-display/single-display.component';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFound404Component } from './page-not-found-404/page-not-found-404.component';
+import { PageNotFound404Component } from './components/page-not-found-404/page-not-found-404.component';
 import { CapitalizePipe } from './trim.pipe';
 import { ScrollToModule } from 'ng2-scroll-to-el';
 

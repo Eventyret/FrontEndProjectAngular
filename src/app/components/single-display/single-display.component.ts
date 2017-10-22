@@ -1,6 +1,6 @@
-import { FanartService } from './../services/fanart.service';
+import { FanartService } from '../../services/fanart.service';
 import { MovieListComponent } from './../movie-list/movie-list.component';
-import { OmdbService } from './../services/omdb.service';
+import { OmdbService } from '../../services/omdb.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -21,9 +21,12 @@ export class SingleDisplayComponent implements OnInit {
   genres: any[]
   slashgenres: string;
   slashlang: string;
+  statusMsg: string = 'Loading data. Please wait';
+  searching: boolean = false;
 
   constructor(private omdbService: OmdbService, private fanartService: FanartService) {
     this.omdbService.getSingleMovie(this.imdbID).subscribe(movie => {
+
       this.movie = movie;
       console.log(this.movie)
       this.actors = movie.Actors.split(",");
@@ -35,8 +38,13 @@ export class SingleDisplayComponent implements OnInit {
     this.fanartService.getArt(this.imdbID).subscribe(artwork => {
       this.artwork = artwork;
       this.posters = artwork.movieposter;
-      this.backgroundimage = artwork.moviebackground[0].url;
-      console.log(artwork) // for testing purposes
+      console.log(artwork)
+      
+      if(this.backgroundimage == "N/A" || artwork.status == 404){
+        this.backgroundimage = "http://i.imgur.com/INQOKzN.png";
+      } else {
+        this.backgroundimage = artwork.moviebackground[0].url;
+      }
       document.getElementById("page-top").style.backgroundImage = "url('" + this.backgroundimage + "')";
     })
   }
@@ -44,10 +52,11 @@ export class SingleDisplayComponent implements OnInit {
     this.movie = data;
     console.log(data);
   }
+
   handleError(error) {
-    console.log(error);
-    error.target.src = "http://www.wujinshike.com/data/wallpapers/73/WDF_1178703.png"
+    /* console.log(error); */
   }
+  
   handleArtwork(artwork){
     this.artwork = artwork;
   }
@@ -60,8 +69,7 @@ export class SingleDisplayComponent implements OnInit {
   }
   getBackground(imdbID: string){
     return this.fanartService.getArt(imdbID).subscribe(
-      artwork => this.handleArtwork(artwork),
-      error => this.handleError(error)
+      artwork => this.handleArtwork(artwork)
     )
   }
   ngOnInit() {

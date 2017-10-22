@@ -1,7 +1,10 @@
+import { Observable } from 'rxjs/Observable';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class OmdbService {
@@ -19,12 +22,18 @@ export class OmdbService {
   
    getMovies(query) {
      return this.http.get(this.API_URL + '?s=' + query + this.endstring + '&type=movie' )
-      .map(res => res.json());
+      .map(res => res.json())
+        .catch(this.handleError);
   }
 
   getSingleMovie(imdbID){
     return this.http.get(this.API_URL + '?i=' + imdbID + this.endstring + '&plot=full')
-    .map(res => res.json());
+    .map(res => res.json())
+      .catch(this.handleError);
+  }
+  handleError(error) {
+    console.error(error);
+    return Observable.throw(error);
   }
 
 }

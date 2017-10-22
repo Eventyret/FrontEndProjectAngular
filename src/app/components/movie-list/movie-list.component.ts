@@ -1,8 +1,8 @@
-import { MovieService } from './../services/movies.service';
+import { MovieService } from '../../services/movies.service';
 import { Component, OnInit } from '@angular/core';
-import { OmdbService } from './../services/omdb.service';
+import { OmdbService } from '../../services/omdb.service';
 import { TruncateModule } from 'ng2-truncate';
-import { CapitalizePipe } from '../trim.pipe';
+import { CapitalizePipe } from '../../trim.pipe';
 
 @Component({
   selector: 'app-movie-list',
@@ -16,6 +16,7 @@ export class MovieListComponent implements OnInit {
   type: string;
   moviesFound: boolean = false;
   searching: boolean = false;
+  statusMsg: string;
 
   constructor(private omdbService: OmdbService, private movieService: MovieService) { 
 
@@ -41,7 +42,9 @@ export class MovieListComponent implements OnInit {
     return this.omdbService.getMovies(query).subscribe(
       // data => console.log(data), // For testing purposes
       data => this.handleSuccess(data),
-      error => this.handleError(error),
+      (error) => {
+        this.statusMsg = 'We are having some problems with the servce, please try again later.'
+      },
       () => this.searching = false
     );
   }
@@ -49,7 +52,9 @@ export class MovieListComponent implements OnInit {
 checkOwnMovies(){
   return this.movieService.checkMovies().subscribe(
     info => this.handleOwnMovies(info),
-    error => this.handleError(error),
+    (error) => {
+      this.statusMsg = 'We are having some problems with the servce, please try again later.'
+    },
     () => this.searching = false
   );
 }
