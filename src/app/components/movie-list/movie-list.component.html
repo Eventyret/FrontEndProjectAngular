@@ -5,9 +5,10 @@
                 <div class="container">
                   <div class="row">
                     <h2 class="text-center">
-                      <span>Dragable Listing</span>Created with
-                      <i class="fa fa-heart"></i> from
-                      <a href="http://grafreez.com"> Grafreez.com</a>
+                      <a routerLink="/">
+                      <span>RSSA</span></a>Created with
+                      <i class="fa fa-heart" style="color:red;"></i> from
+                      Simen Daehlin
                     </h2>
                   </div>
                       <div class="col-xs-12">
@@ -23,7 +24,7 @@
                           </form>
                         </div>
                       </div>
-                  <div class="col-md-10 offset-md-1 row-block">
+                  <div class="col-md-10 offset-md-1" id="searchresults">
                     <h1 *ngIf="statusMsg">{{statusMsg}}</h1>
                     <ul id="sortable" *ngFor="let movie of movies | slice:0:9;">
                       <p>

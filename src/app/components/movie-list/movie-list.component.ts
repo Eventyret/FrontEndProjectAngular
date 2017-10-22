@@ -25,6 +25,7 @@ export class MovieListComponent implements OnInit {
   handleSuccess(data){
     this.moviesFound = true;
     this.movies = data.Search;
+    document.getElementById("searchresults").classList.add('row-block');
     console.log(data.Search);
   }
   handleOwnMovies(info){
@@ -40,7 +41,6 @@ export class MovieListComponent implements OnInit {
   searchMovies(query: string){
     this.searching = true;
     return this.omdbService.getMovies(query).subscribe(
-      // data => console.log(data), // For testing purposes
       data => this.handleSuccess(data),
       (error) => {
         this.statusMsg = 'We are having some problems with the servce, please try again later.'
