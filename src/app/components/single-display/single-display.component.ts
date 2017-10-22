@@ -1,4 +1,4 @@
-import { FanartService } from '../../services/fanart.service';
+import { FanartService } from './../../services/fanart.service';
 import { MovieListComponent } from './../movie-list/movie-list.component';
 import { OmdbService } from '../../services/omdb.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +23,7 @@ export class SingleDisplayComponent implements OnInit {
   slashlang: string;
   statusMsg: string = 'Loading data. Please wait';
   searching: boolean = false;
+  errorMsg: string = '';
 
   constructor(private omdbService: OmdbService, private fanartService: FanartService) {
     this.omdbService.getSingleMovie(this.imdbID).subscribe(movie => {
@@ -48,13 +49,18 @@ export class SingleDisplayComponent implements OnInit {
       document.getElementById("page-top").style.backgroundImage = "url('" + this.backgroundimage + "')";
     })
   }
+
+
+
   handleSuccess(data) {
     this.movie = data;
     console.log(data);
   }
 
   handleError(error) {
-    /* console.log(error); */
+    this.fanartService.artworkIsEmptied.subscribe(error => {
+      this.errorMsg = error;
+    })
   }
   
   handleArtwork(artwork){
@@ -69,7 +75,8 @@ export class SingleDisplayComponent implements OnInit {
   }
   getBackground(imdbID: string){
     return this.fanartService.getArt(imdbID).subscribe(
-      artwork => this.handleArtwork(artwork)
+      artwork => this.handleArtwork(artwork),
+      error => this.handleError(error)
     )
   }
   ngOnInit() {
