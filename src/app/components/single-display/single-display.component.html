@@ -1,14 +1,14 @@
 <div *ngIf="searching">
- {{statusMessage}}
+  {{statusMessage}}
 </div>
 <header id="page-top">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="intro-text">
+          <h1 *ngIf="errorMsg">{{errorMsg}}</h1>
           <hr class="star-light">
-            <img class="img-fluid half-size" src="{{artwork?.hdmovielogo[0].url}}">
-            <h1>{{errorMsg}}</h1>
+          <img class="img-fluid half-size" src="{{artwork?.hdmovielogo[0].url}}">
           <h3 class="well">{{slashgenres}} {{type | capitalize}} Directed by: {{movie?.Director}}</h3>
         </div>
       </div>
@@ -16,75 +16,82 @@
   </div>
 </header>
 <a class="arrow-wrap">
-  <span class="arrow" [scrollTo]="'#about'"></span>
+<span class="arrow" [scrollTo]="'#facts'"></span>
 </a>
 
 <div class="content-wrapper">
-  <section class="primary">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2>Posters</h2>
-          <hr class="star-primary">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3 offset-sm-1" *ngFor="let post of posters  | slice:0:3;">
-          <img class="card-img-top" src="{{post.url}}" alt="{{movie?.title}}">
-        </div>
+<section class="primary" id="facts">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>Movie Facts</h2>
+        <hr class="star-primary">
       </div>
     </div>
-  </section>
-  <section class="success" id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2>The Plot</h2>
-          <hr class="star-light">
-        </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <ul class="list-group">
+          <li class="list-group-item active">Actors</li>
+          <li class="list-group-item" *ngFor="let actor of actors">{{actor}}</li>
+        </ul>
       </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <p class="lead text-justify">{{movie?.Plot}}</p>
-        </div>
+      <div class="col-sm-4">
+        <ul class="list-group">
+          <li class="list-group-item active">Actors</li>
+          <li class="list-group-item">Languages: {{slashlang}}</li>
+          <li class="list-group-item">Genres: {{slashgenres}}</li>
+          <li class="list-group-item">Released: {{movie?.Released}}</li>
+        </ul>
+      </div>
+
+      <div class="col-sm-4">
+        <ul class="list-group">
+          <li class="list-group-item active">Ratings</li>
+          <li class="list-group-item" *ngFor="let rating of ratings">{{rating.Source}}: {{rating.Value}}</li>
+          <li class="list-group-item">IMDB Rating: {{movie?.imdbRating}}</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+ <!-- The Plot -->
+<section class="success" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>The Plot</h2>
+        <hr class="star-light">
       </div>
     </div>
-  </section>
-
-  <section class="primary" id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2>Movie Facts</h2>
-          <hr class="star-primary">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <ul class="list-group">
-            <li class="list-group-item active">Actors</li>
-            <li class="list-group-item" *ngFor="let actor of actors">{{actor}}</li>
-          </ul>
-        </div>
-        <div class="col-sm-4">
-          <ul class="list-group">
-            <li class="list-group-item active">Actors</li>
-            <li class="list-group-item">Languages: {{slashlang}}</li>
-            <li class="list-group-item">Genres: {{slashgenres}}</li>
-
-          </ul>
-        </div>
-
-        <div class="col-sm-4">
-          <ul class="list-group">
-            <li class="list-group-item active">Actors</li>
-            <!-- <li class="list-group-item">{{movie?.  }}</li> -->
-          </ul>
-        </div>
-
+    <div class="row">
+      <div class="col-lg-12">
+        <p class="lead text-justify">{{movie?.Plot}}</p>
       </div>
     </div>
-  </section>
-  <footer class="container" style="min-height:200px; background-color:#18bc9c;color:#fff;text-align:center;padding-top:50px;">
+  </div>
+</section>
+
+  <!-- End The plot -->
+
+
+<section class="primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>Posters</h2>
+        <hr class="star-primary">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 offset-sm-1" *ngFor="let post of posters  | slice:0:3;">
+        <img class="card-img-top" src="{{post.url}}" alt="{{movie?.title}}">
+      </div>
+    </div>
+  </div>
+</section>
+
+  <footer class="container">
     INSPIRED BY PURECSS.IO © 2015
   </footer>
