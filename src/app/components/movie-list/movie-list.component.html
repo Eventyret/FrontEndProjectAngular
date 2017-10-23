@@ -18,7 +18,11 @@
                               <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" placeholder="Search for any move or series and press enter..."
                                 autofocus required>
                               <span class="input-group-btn">
-                                <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery)" class="btn btn-primary" value="Go">
+<input type="submit" id="searchbutton" (click)="searchMovies(searchQuery); $event.stopPropagation();" class="btn btn-primary"
+ value="Go">
+
+
+
                               </span>
                             </div>
                           </form>
@@ -30,7 +34,9 @@
                       <p>
                         <div class="media">
                           <div class="media-left align-self-center">
-                            <img class="rounded-circle" src="{{movie.Poster}}">
+<img class="rounded-circle" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'">
+
+
                           </div>
                           <div class="media-body">
                             <h4>{{movie.Title}}</h4>

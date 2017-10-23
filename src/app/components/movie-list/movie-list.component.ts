@@ -35,10 +35,14 @@ export class MovieListComponent implements OnInit {
   }
 
   handleError(error){
-    console.log(error);
+    console.error(error);
+    if(error == 404) {
+      this.statusMsg = 'We are having some problems with the servce, please try again later.'
+    }
   }
 
   searchMovies(query: string){
+
     this.searching = true;
     return this.omdbService.getMovies(query).subscribe(
       data => this.handleSuccess(data),
