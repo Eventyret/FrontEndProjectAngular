@@ -49,7 +49,8 @@ export class SingleDisplayComponent implements OnInit {
       this.errorMsg = error["error message"];
       if(this.errorMsg == "Not found"){
         this.errorMsg = this.Title;
-        document.getElementById("page-top").style.backgroundImage = "url('http://wallpapercraft.net/wp-content/uploads/2016/07/1080p-Movie-Backgrounds.jpg')";
+        document.getElementById("page-top").style.backgroundColor = "#2C3E50";
+        /* document.getElementById("hdlogo").setAttribute ('src', "../../../assets/1pxtrans.png"); */
       }
     })
   }
