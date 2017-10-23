@@ -40,6 +40,14 @@ export class MovieListComponent implements OnInit {
       this.statusMsg = 'We are having some problems with the servce, please try again later.'
     }
   }
+  isInMovies(movieID: string): boolean {
+    this.ownMovies.forEach((movie) => {
+      if (movie['imdbID'] == movieID) {
+        return true
+      }
+    })
+    return false
+  }
 
   searchMovies(query: string){
 

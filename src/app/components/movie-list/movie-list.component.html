@@ -20,9 +20,6 @@
                               <span class="input-group-btn">
 <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery); $event.stopPropagation();" class="btn btn-primary"
  value="Go">
-
-
-
                               </span>
                             </div>
                           </form>
@@ -31,6 +28,9 @@
                   <div class="col-md-10 offset-md-1" id="searchresults">
                     <h1 *ngIf="statusMsg">{{statusMsg}}</h1>
                     <ul id="sortable" *ngFor="let movie of movies | slice:0:9;">
+<!-- <div *ngIf="isInMovies(movie.imdbID)"></div> -->
+
+
                       <p>
                         <div class="media">
                           <div class="media-left align-self-center">
