@@ -23,30 +23,35 @@ export class SingleDisplayComponent implements OnInit {
   slashlang: string;
   statusMsg: string = 'Loading data. Please wait';
   searching: boolean = false;
-  errorMsg: string = '';
+  errorMsg: string;
+  ratings:any[]
 
   constructor(private omdbService: OmdbService, private fanartService: FanartService) {
     this.omdbService.getSingleMovie(this.imdbID).subscribe(movie => {
-
       this.movie = movie;
       console.log(this.movie)
+      this.Title = movie.Title
       this.actors = movie.Actors.split(",");
       this.genres = movie.Genre.split(",");
       this.slashgenres = movie.Genre.replace(/,/g, " /");
       this.slashlang = movie.Language.replace(/,/g, " /");
+      this.ratings = movie.Ratings
     })
 
     this.fanartService.getArt(this.imdbID).subscribe(artwork => {
       this.artwork = artwork;
       this.posters = artwork.movieposter;
-      console.log(artwork)
-      
-      if(this.backgroundimage == "N/A" || artwork.status == 404){
-        this.backgroundimage = "http://i.imgur.com/INQOKzN.png";
-      } else {
         this.backgroundimage = artwork.moviebackground[0].url;
-      }
       document.getElementById("page-top").style.backgroundImage = "url('" + this.backgroundimage + "')";
+    },
+    (error) => {
+      console.log(error)
+      this.errorMsg = error["error message"];
+      if(this.errorMsg == "Not found"){
+        this.errorMsg = this.Title;
+        document.getElementById("page-top").style.backgroundColor = "#2C3E50";
+        /* document.getElementById("hdlogo").setAttribute ('src', "../../../assets/1pxtrans.png"); */
+      }
     })
   }
 
@@ -69,16 +74,10 @@ export class SingleDisplayComponent implements OnInit {
 
   searchMovies(imdbID: string) {
     return this.omdbService.getSingleMovie(imdbID).subscribe(
-      data => this.handleSuccess(data),
-      error => this.handleError(error)
+      data => this.handleSuccess(data)
     )
   }
-  getBackground(imdbID: string){
-    return this.fanartService.getArt(imdbID).subscribe(
-      artwork => this.handleArtwork(artwork),
-      error => this.handleError(error)
-    )
-  }
+
   ngOnInit() {
     this.imdbID;
   }
