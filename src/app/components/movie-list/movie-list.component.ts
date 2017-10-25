@@ -1,8 +1,8 @@
-import { MovieService } from '../../services/movies.service';
 import { Component, OnInit } from '@angular/core';
-import { OmdbService } from '../../services/omdb.service';
 import { TruncateModule } from 'ng2-truncate';
-import { CapitalizePipe } from '../../trim.pipe';
+import { CapitalizePipe } from '../../trim.pipe';import _ from "lodash";
+import { SearchService } from '../../services/search.service';
+
 
 @Component({
   selector: 'app-movie-list',
@@ -12,19 +12,22 @@ import { CapitalizePipe } from '../../trim.pipe';
 export class MovieListComponent implements OnInit {
   movies: any[];
   ownMovies: any[];
+  allMovies: any[];
   imdbID: any[];
   type: string;
   moviesFound: boolean = false;
   searching: boolean = false;
   statusMsg: string;
 
-  constructor(private omdbService: OmdbService, private movieService: MovieService) { 
+  constructor(private searchService: SearchService) { 
 
   }
 
   handleSuccess(data){
     this.moviesFound = true;
     this.movies = data.Search;
+    this.allMovies = this.movies.concat(this.ownMovies);
+    console.log(this.allMovies)
     document.getElementById("searchresults").classList.add('row-block');
     console.log(data.Search);
   }
@@ -40,19 +43,11 @@ export class MovieListComponent implements OnInit {
       this.statusMsg = 'We are having some problems with the servce, please try again later.'
     }
   }
-  isInMovies(movieID: string): boolean {
-    this.ownMovies.forEach((movie) => {
-      if (movie['imdbID'] == movieID) {
-        return true
-      }
-    })
-    return false
-  }
 
   searchMovies(query: string){
 
     this.searching = true;
-    return this.omdbService.getMovies(query).subscribe(
+    return this.searchService.getMovies(query).subscribe(
       data => this.handleSuccess(data),
       (error) => {
         this.statusMsg = 'We are having some problems with the servce, please try again later.'
@@ -62,7 +57,7 @@ export class MovieListComponent implements OnInit {
   }
 
 checkOwnMovies(){
-  return this.movieService.checkMovies().subscribe(
+  return this.searchService.checkMovies().subscribe(
     info => this.handleOwnMovies(info),
     (error) => {
       this.statusMsg = 'We are having some problems with the servce, please try again later.'

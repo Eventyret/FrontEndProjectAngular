@@ -1,8 +1,6 @@
 import { FanartService } from './services/fanart.service';
 import { HttpModule } from '@angular/http';
-import { SeriesService } from './services/series.service';
-import { MovieService } from './services/movies.service';
-import { OmdbService } from './services/omdb.service';
+import { SearchService } from './services/search.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TruncateModule } from 'ng2-truncate';
@@ -41,9 +39,7 @@ const appRoutes: Routes = [
 
   ],
   providers: [
-    OmdbService,
-    MovieService,
-    SeriesService,
+    SearchService,
     FanartService
   ],
   bootstrap: [AppComponent]

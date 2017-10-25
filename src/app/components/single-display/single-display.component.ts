@@ -1,6 +1,6 @@
 import { FanartService } from './../../services/fanart.service';
+import { SearchService } from '../../services/search.service';
 import { MovieListComponent } from './../movie-list/movie-list.component';
-import { OmdbService } from '../../services/omdb.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -26,8 +26,8 @@ export class SingleDisplayComponent implements OnInit {
   errorMsg: string;
   ratings:any[]
 
-  constructor(private omdbService: OmdbService, private fanartService: FanartService) {
-    this.omdbService.getSingleMovie(this.imdbID).subscribe(movie => {
+  constructor(private searchService: SearchService, private fanartService: FanartService) {
+    this.searchService.getSingleMovie(this.imdbID).subscribe(movie => {
       this.movie = movie;
       console.log(this.movie)
       this.Title = movie.Title
@@ -73,7 +73,7 @@ export class SingleDisplayComponent implements OnInit {
   }
 
   searchMovies(imdbID: string) {
-    return this.omdbService.getSingleMovie(imdbID).subscribe(
+    return this.searchService.getSingleMovie(imdbID).subscribe(
       data => this.handleSuccess(data)
     )
   }

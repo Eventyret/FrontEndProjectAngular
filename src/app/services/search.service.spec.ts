@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { OmdbService } from './omdb.service';
+import { OmdbService } from './search.service';
 
 describe('OmdbService', () => {
   beforeEach(() => {
