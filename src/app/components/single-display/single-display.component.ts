@@ -29,17 +29,14 @@ export class SingleDisplayComponent implements OnInit {
   slashlang: string;
 
 // Error & Status Messages Messages (Needs cleanup)
-  loadingMsg: string = 'Loading data. Please wait';
   errorMsg: string;
-
-  
   searching: boolean = false;
 
 
   constructor(private searchService: SearchService, private fanartService: FanartService) {
       this.searchService.getSingleMovie(this.imdbID).subscribe(movie => {
       this.movie = movie;
-      console.log(this.movie)
+      console.log(this.movie) // For debugging
       this.Title = movie.Title
       this.actors = movie.Actors.split(",");
       this.genres = movie.Genre.split(",");
@@ -51,7 +48,7 @@ export class SingleDisplayComponent implements OnInit {
     this.fanartService.getArt(this.imdbID).subscribe(artwork => {
       this.artwork = artwork;
       this.posters = artwork.movieposter;
-        this.backgroundimage = artwork.moviebackground[0].url;
+      this.backgroundimage = artwork.moviebackground[0].url;
       document.getElementById("page-top").style.backgroundImage = "url('" + this.backgroundimage + "')";
     },
     (error) => {
@@ -62,7 +59,10 @@ export class SingleDisplayComponent implements OnInit {
         document.getElementById("page-top").style.backgroundColor = "#2C3E50";
         /* document.getElementById("hdlogo").setAttribute ('src', "../../../assets/1pxtrans.png"); */
       }
-    })
+    },
+  ()=> {
+    console.log("Loading Complete")
+  })
   }
 
   handleSuccess(data) {

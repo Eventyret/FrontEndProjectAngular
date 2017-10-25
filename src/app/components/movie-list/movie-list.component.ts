@@ -12,12 +12,12 @@ import { SearchService } from '../../services/search.service';
 export class MovieListComponent implements OnInit {
   movies: any[];
   ownMovies: any[];
-  allMovies: any[];
   imdbID: any[];
   type: string;
   moviesFound: boolean = false;
   searching: boolean = false;
   statusMsg: string;
+test:any[];
 
   constructor(private searchService: SearchService) { 
 
@@ -26,8 +26,6 @@ export class MovieListComponent implements OnInit {
   handleSuccess(data){
     this.moviesFound = true;
     this.movies = data.Search;
-    this.allMovies = this.movies.concat(this.ownMovies);
-    console.log(this.allMovies)
     document.getElementById("searchresults").classList.add('row-block');
     console.log(data.Search);
   }

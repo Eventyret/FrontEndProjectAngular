@@ -46,7 +46,7 @@ export class SearchService {
   }
   
   checkMovies() {
-    return this.http.get(this.OMDB_URL + this.RADAR_STRING)
+    return this.http.get(this.RADAR_URL + this.RADAR_STRING)
       .map((res: Response): Promise<any> => {
         return res.json();
       })
