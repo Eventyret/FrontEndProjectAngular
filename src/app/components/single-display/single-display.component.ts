@@ -9,25 +9,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-display.component.css']
 })
 export class SingleDisplayComponent implements OnInit {
+  // Different Arrays to hold data
   movie: any[];
-  imdbID: string = sessionStorage.getItem('imdbID');
-  type: string = sessionStorage.getItem('type');
-  Poster: string;
-  Title: string;
   artwork: any[];
   posters: any[];
-  backgroundimage: string;
   actors: any[]
   genres: any[]
+  ratings: any[]
+
+  // Storing data to use in Single-Display Component
+  imdbID: string = sessionStorage.getItem('imdbID');
+  type: string = sessionStorage.getItem('type');
+  
+  // Single outputs from arrays
+  Poster: string;
+  Title: string;
+  backgroundimage: string;
   slashgenres: string;
   slashlang: string;
-  statusMsg: string = 'Loading data. Please wait';
-  searching: boolean = false;
+
+// Error & Status Messages Messages (Needs cleanup)
+  loadingMsg: string = 'Loading data. Please wait';
   errorMsg: string;
-  ratings:any[]
+
+  
+  searching: boolean = false;
+
 
   constructor(private searchService: SearchService, private fanartService: FanartService) {
-    this.searchService.getSingleMovie(this.imdbID).subscribe(movie => {
+      this.searchService.getSingleMovie(this.imdbID).subscribe(movie => {
       this.movie = movie;
       console.log(this.movie)
       this.Title = movie.Title
@@ -54,8 +64,6 @@ export class SingleDisplayComponent implements OnInit {
       }
     })
   }
-
-
 
   handleSuccess(data) {
     this.movie = data;

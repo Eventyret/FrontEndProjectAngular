@@ -10,7 +10,6 @@ import _ from "lodash";
 @Injectable()
 export class SearchService {
 
-
   private query: string;
   private imdbID: string;
   private OMDB_KEY: string = environment.OMDB_KEY;
