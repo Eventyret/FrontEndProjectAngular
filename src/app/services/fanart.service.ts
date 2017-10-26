@@ -13,7 +13,7 @@ export class FanartService {
 
 
   private imdbID: string;
-  private API_KEY: string = environment.FANART_API_KEY;
+  private API_KEY: string = environment.FANART_KEY;
   private API_URL: string = environment.FANART_URL;
   private endstring: string = '?api_key=' + this.API_KEY;
   artworkIsEmptied: EventEmitter<string> = new EventEmitter<string>();
