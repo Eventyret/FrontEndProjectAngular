@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TruncateModule } from 'ng2-truncate';
 import { CapitalizePipe } from '../../trim.pipe';import _ from "lodash";
 import { SearchService } from '../../services/search.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -10,28 +11,41 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
-  movies: any[];
-  ownMovies: any[];
+  omdbMovies: any[];
+  radarrMovies: any[];
+  mergedMovies: any[];
   imdbID: any[];
+  matchFound: boolean = false;
   type: string;
-  moviesFound: boolean = false;
   searching: boolean = false;
   statusMsg: string;
-test:any[];
-
+  omdbComplete: boolean = false;
+  radarrComplete: boolean = false;
   constructor(private searchService: SearchService) { 
 
   }
 
   handleSuccess(data){
-    this.moviesFound = true;
-    this.movies = data.Search;
+    this.omdbMovies = data.Search;
+    this.omdbComplete = true;
     document.getElementById("searchresults").classList.add('row-block');
     console.log(data.Search);
+for (let index = 0; index < this.omdbMovies.length; index++) {
+  let omdb = this.omdbMovies[index];
+  for (let index2 = 0; index2 < this.radarrMovies.length; index2++) {
+    let radarr = this.radarrMovies[index2];
+    if (omdb.imdbID == radarr.imdbId) {
+      console.log("Found a match with name " + omdb.Title)
+      this.matchFound = true;
+      break;
+  }
+}
+}
+
   }
   handleOwnMovies(info){
-    this.moviesFound = true;
-    this. ownMovies = info;
+    this. radarrMovies = info;
+    this.radarrComplete = true;
     console.log(info);
   }
 
@@ -43,14 +57,11 @@ test:any[];
   }
 
   searchMovies(query: string){
-
-    this.searching = true;
     return this.searchService.getMovies(query).subscribe(
       data => this.handleSuccess(data),
       (error) => {
         this.statusMsg = 'We are having some problems with the servce, please try again later.'
       },
-      () => this.searching = false
     );
   }
 
@@ -60,7 +71,6 @@ checkOwnMovies(){
     (error) => {
       this.statusMsg = 'We are having some problems with the servce, please try again later.'
     },
-    () => this.searching = false
   );
 }
 

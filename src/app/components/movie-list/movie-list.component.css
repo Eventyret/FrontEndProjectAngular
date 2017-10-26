@@ -7,6 +7,10 @@ body {
   min-height: 100%;
   background-color: rgba(62, 69, 81, 1)
 }
+.isActive{
+  background: green;
+}
+
 
 .search-well {
   min-height: 20px;
