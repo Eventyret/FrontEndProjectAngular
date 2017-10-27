@@ -15,37 +15,47 @@ export class MovieListComponent implements OnInit {
   radarrMovies: any[];
   mergedMovies: any[];
   imdbID: any[];
-  matchFound: boolean = false;
   type: string;
-  searching: boolean = false;
   statusMsg: string;
-  omdbComplete: boolean = false;
-  radarrComplete: boolean = false;
   constructor(private searchService: SearchService) { 
 
   }
 
   handleSuccess(data){
     this.omdbMovies = data.Search;
-    this.omdbComplete = true;
     document.getElementById("searchresults").classList.add('row-block');
     console.log(data.Search);
-for (let index = 0; index < this.omdbMovies.length; index++) {
+    this.omdbMovies.forEach(movie => {
+      let movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID})
+      if (movies.length)
+        movie.matched = true;
+      else
+        movie.matched = false;
+    });
+
+    //imdbId imdbID
+    
+
+
+
+/* for (let index = 0; index < this.omdbMovies.length; index++) {
   let omdb = this.omdbMovies[index];
   for (let index2 = 0; index2 < this.radarrMovies.length; index2++) {
     let radarr = this.radarrMovies[index2];
     if (omdb.imdbID == radarr.imdbId) {
-      console.log("Found a match with name " + omdb.Title)
+      console.log("Found a match with name " + omdb.Title + " with id " + omdb.imdbID)
       this.matchFound = true;
       break;
+  } else {
+    this.matchFound = false;
+      console.log("No match found for " + omdb.Title + " with id " + omdb.imdbID);
   }
 }
-}
+} */
 
   }
   handleOwnMovies(info){
     this. radarrMovies = info;
-    this.radarrComplete = true;
     console.log(info);
   }
 

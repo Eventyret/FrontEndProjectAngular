@@ -28,8 +28,7 @@
     <div class="col-md-10 offset-md-1" id="searchresults">
       <h1 *ngIf="statusMsg">{{statusMsg}}</h1>
 <ul id="sortable" *ngFor="let movie of omdbMovies | slice:0:9;">
-        <p>
-<div class="media" [class.matched]="matchFound">
+<div class="media" [ngClass]="{'match': movie.matched, 'noMatch': !movie.matched}">
             <div class="media-left align-self-center">
               <img class="rounded-circle" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'">
             </div>
