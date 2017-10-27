@@ -21,7 +21,7 @@ export class SingleDisplayComponent implements OnInit {
   // Storing data to use in Single-Display Component
   imdbID: string = sessionStorage.getItem('imdbID');
   type: string = sessionStorage.getItem('type');
-  // movieInfo: string = JSON.parse(sessionStorage.getItem('movieInfo')); // To grab the data from what was searched for. Needs to be fixed before enabled
+  movieInfo:Object = JSON.parse(sessionStorage.getItem('movieInfo'));
   
 
   

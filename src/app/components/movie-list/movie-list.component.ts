@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TruncateModule } from 'ng2-truncate';
-import { CapitalizePipe } from '../../trim.pipe';import _ from "lodash";
+import { CapitalizePipe } from '../../capitalize.pipe';
+import _ from "lodash";
 import { SearchService } from '../../services/search.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
