@@ -28,18 +28,41 @@
     <div class="col-md-10 offset-md-1" id="searchresults">
       <h1 *ngIf="statusMsg">{{statusMsg}}</h1>
 <ul id="sortable" *ngFor="let movie of omdbMovies | slice:0:9;">
-<div class="media" [ngClass]="{'match': movie.matched, 'noMatch': !movie.matched}">
-            <div class="media-left align-self-center">
-              <img class="rounded-circle" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'">
-            </div>
-            <div class="media-body">
-              <h4>{{movie.Title}}</h4>
-              <p>Release Year: {{movie.Year}}</p>
-            </div>
-            <div class="media-right align-self-center">
-              <a (click)="storeMovie(movie.imdbID, movie.Type)" href="#" class="btn btn-default" routerLink="/info">{{movie.Type | capitalize}} Details</a>
-            </div>
-          </div>
+  <div *ngIf="movie.matched; then match else nomatch"></div>
+  <!-- Truthy Start -->
+  <ng-template #match>
+<div class="media media-match">
+  <div class="media-left align-self-center">
+    <img class="rounded-circle" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'">
+  </div>
+  <div class="media-body">
+    <h4>{{movie.Title}}</h4>
+    <p>Release Year: {{movie.Year}}</p>
+    <p>Truthy</p>
+  </div>
+  <div class="media-right align-self-center">
+    <a (click)="storeMovie(movie.imdbID, movie.Type)" href="#" class="btn btn-default" routerLink="/info">{{movie.Type | capitalize}} Details</a>
+  </div>
+</div>
+  </ng-template>
+  <!-- Truthy End -->
+  <!-- Falsy Start -->
+  <ng-template #nomatch>
+<div class="media media-noMatch">
+  <div class="media-left align-self-center">
+    <img class="rounded-circle" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'">
+  </div>
+  <div class="media-body">
+    <h4>{{movie.Title}}</h4>
+    <p>Release Year: {{movie.Year}}</p>
+    <p>Falsy</p>
+  </div>
+  <div class="media-right align-self-center">
+    <a (click)="storeMovie(movie.imdbID, movie.Type)" href="#" class="btn btn-default" routerLink="/info">{{movie.Type | capitalize}} Details</a>
+  </div>
+</div>
+  </ng-template>
+  <!-- Falsy End -->
       </ul>
     </div>
   </div>

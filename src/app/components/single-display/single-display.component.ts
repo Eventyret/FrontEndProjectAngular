@@ -17,9 +17,13 @@ export class SingleDisplayComponent implements OnInit {
   genres: any[]
   ratings: any[]
 
+
   // Storing data to use in Single-Display Component
   imdbID: string = sessionStorage.getItem('imdbID');
   type: string = sessionStorage.getItem('type');
+  // movieInfo: string = JSON.parse(sessionStorage.getItem('movieInfo')); // To grab the data from what was searched for. Needs to be fixed before enabled
+  
+
   
   // Single outputs from arrays
   Poster: string;
@@ -88,6 +92,7 @@ export class SingleDisplayComponent implements OnInit {
 
   ngOnInit() {
     this.imdbID;
+    // console.log(this.movieInfo) // For debugging
   }
 
 }

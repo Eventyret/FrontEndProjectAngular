@@ -67,8 +67,7 @@ checkOwnMovies(){
 
   storeMovie(imdbID, type ){
       sessionStorage.setItem("imdbID", imdbID);
-      sessionStorage.setItem("type", type )
-      
+      sessionStorage.setItem("type", type)
       console.log(imdbID)
     }
 

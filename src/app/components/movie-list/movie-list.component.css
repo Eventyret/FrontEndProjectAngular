@@ -1,3 +1,5 @@
+  @import url('https://fonts.googleapis.com/css?family=Kumar+One');
+
   html {
   height: 100%;
 }
@@ -6,12 +8,6 @@
 body {
   min-height: 100%;
   background-color: rgba(62, 69, 81, 1)
-}
-.match{
-  background: green;
-}
-.noMatch{
-  background: #fff;
 }
 
 
@@ -41,8 +37,6 @@ a:focus {
 background-color: rgba(64, 71, 81, 0.5);
 }
 
-@import url('https://fonts.googleapis.com/css?family=Kumar+One');
-
 .row-section h2 {
   float: left;
   width: 100%;
@@ -67,6 +61,8 @@ background-color: rgba(64, 71, 81, 0.5);
 .row-section .row-block {
   padding: 20px;
   margin-bottom: 50px;
+
+  
 }
 
 .row-section .row-block ul {
@@ -87,11 +83,13 @@ background-color: rgba(64, 71, 81, 0.5);
   cursor: grabbing;
 }
 
-.row-section .row-block .media {
-  border: 1px solid #d5dbdd;
+/* If we find a matching movie we use these styles */
+.row-section .row-block .media.media-match {
   padding: 5px 20px;
   border-radius: 5px;
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.04);
+  background: #27ae60;
+  margin-top: 20px;
+
 }
 
 .row-section .media .media-left img {
@@ -104,13 +102,42 @@ background-color: rgba(64, 71, 81, 0.5);
 }
 
 .row-section .media .media-body h4 {
-  color: #6b456a;
+  color: #fff;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 0;
   padding-left: 14px;
   margin-top: 12px;
 }
+/* End of matches found */
+
+/* If no Match is found we use these styles */
+.row-section .row-block .media.media-noMatch {
+  padding: 5px 20px;
+  border-radius: 5px;
+  background: #e74c3c;
+  margin-top: 20px;
+
+}
+
+.row-section .media .media-left img {
+  width: 75px;
+}
+
+.row-section .media .media-body p {
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.row-section .media .media.media-noMatch .media-body h4 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0;
+  padding-left: 14px;
+  margin-top: 12px;
+}
+/* End of No match found */
 
 .btn-default {
   background: #6B456A;
