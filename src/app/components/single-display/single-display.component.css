@@ -2,8 +2,6 @@ header {
   text-align: center;
   color: #fff;
   background: #2c3e50;
-
-
   position: fixed;
   width: 100%;
   z-index: 1;
@@ -23,8 +21,44 @@ header {
 }
 
 .well {
-  background-color:  rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
+
+.row-section h2 {
+  float: left;
+  width: 100%;
+  color: #212121;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.row-section h2 span {
+  font-family: 'Kumar One', cursive;
+  display: block;
+  font-size: 45px;
+  text-transform: none;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.row-section h2 a {
+  color: #212121;
+}
+
+a {
+  text-decoration: none;
+  color: #212121;
+}
+
+a:visited>span {
+  text-decoration: none;
+  color: #212121;
+}
+
+a:focus {
+  outline: none;
+}
+
 
 /* HERE ENDS THE MAGIC */
 
@@ -90,6 +124,7 @@ hr.star-light:after {
   color: #fff;
   background-color: #18bc9c;
 }
+
 hr.star-primary {
   border-color: #2c3e50;
 }
@@ -151,6 +186,7 @@ section.success {
   border-color: #111 transparent transparent transparent;
   -webkit-transform: rotate(360deg)
 }
+
 .arrow-wrap .arrow {
   -webkit-animation: arrows 2.8s 0.4s;
   -webkit-animation-delay: 3s;

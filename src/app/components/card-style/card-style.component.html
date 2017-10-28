@@ -37,9 +37,9 @@
                       <h4 class="card-title text-center">
                         <strong>{{movie.Title | truncate :  18}}</strong>
                       </h4>
-                      <p class="card-text">
+                      <!-- <p class="card-text">
                         {{movies[movie.imdbID].overview}}
-                      </p>
+                      </p> -->
             <div class="d-flex justify-content-md-center">
                 <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info btn-block" routerLink="/info" ngbTooltip="{{movie.Title}} is in our Collection" triggers="mouseenter:mouseleave"  placement="top"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
             </div>

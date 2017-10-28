@@ -23,8 +23,6 @@ export class SingleDisplayComponent implements OnInit {
   type: string = sessionStorage.getItem('type');
   movieInfo:Object = JSON.parse(sessionStorage.getItem('movieInfo'));
   
-
-  
   // Single outputs from arrays
   Poster: string;
   Title: string;
@@ -38,61 +36,61 @@ export class SingleDisplayComponent implements OnInit {
 
 
   constructor(private searchService: SearchService, private fanartService: FanartService) {
-      this.searchService.getSingleMovie(this.imdbID).subscribe(movie => {
-      this.movie = movie;
-      console.log(this.movie) // For debugging
-      this.Title = movie.Title
-      this.actors = movie.Actors.split(",");
-      this.genres = movie.Genre.split(",");
-      this.slashgenres = movie.Genre.replace(/,/g, " /");
-      this.slashlang = movie.Language.replace(/,/g, " /");
-      this.ratings = movie.Ratings
-    })
+	  this.searchService.getSingleMovie(this.imdbID).subscribe(movie => {
+	  this.movie = movie;
+	  console.log(this.movie) // For debugging
+	  this.Title = movie.Title
+	  this.actors = movie.Actors.split(",");
+	  console.log(this.actors);
+	  this.slashgenres = movie.Genre.replace(/,/g, " /");
+	  this.slashlang = movie.Language.replace(/,/g, " /");
+	  this.ratings = movie.Ratings
+	})
 
-    this.fanartService.getArt(this.imdbID).subscribe(artwork => {
-      this.artwork = artwork;
-      this.posters = artwork.movieposter;
-      this.backgroundimage = artwork.moviebackground[0].url;
-      document.getElementById("page-top").style.backgroundImage = "url('" + this.backgroundimage + "')";
-    },
-    (error) => {
-      console.log(error)
-      this.errorMsg = error["error message"];
-      if(this.errorMsg == "Not found"){
-        this.errorMsg = this.Title;
-        document.getElementById("page-top").style.backgroundColor = "#2C3E50";
-        /* document.getElementById("hdlogo").setAttribute ('src', "../../../assets/1pxtrans.png"); */
-      }
-    },
+	this.fanartService.getArt(this.imdbID).subscribe(artwork => {
+	  this.artwork = artwork;
+	  this.posters = artwork.movieposter;
+	  this.backgroundimage = artwork.moviebackground[0].url;
+	  document.getElementById("page-top").style.backgroundImage = "url('" + this.backgroundimage + "')";
+	},
+	(error) => {
+	  console.log(error)
+	  this.errorMsg = error["error message"];
+	  if(this.errorMsg == "Not found"){
+		this.errorMsg = this.Title;
+		document.getElementById("page-top").style.backgroundColor = "#2C3E50";
+		/* document.getElementById("hdlogo").setAttribute ('src', "../../../assets/1pxtrans.png"); */
+	  }
+	},
   ()=> {
-    console.log("Loading Complete")
+	console.log("Loading Complete")
   })
   }
 
   handleSuccess(data) {
-    this.movie = data;
-    console.log(data);
+	this.movie = data;
+	console.log(data);
   }
 
   handleError(error) {
-    this.fanartService.artworkIsEmptied.subscribe(error => {
-      this.errorMsg = error;
-    })
+	this.fanartService.artworkIsEmptied.subscribe(error => {
+	  this.errorMsg = error;
+	})
   }
   
   handleArtwork(artwork){
-    this.artwork = artwork;
+	this.artwork = artwork;
   }
 
   searchMovies(imdbID: string) {
-    return this.searchService.getSingleMovie(imdbID).subscribe(
-      data => this.handleSuccess(data)
-    )
+	return this.searchService.getSingleMovie(imdbID).subscribe(
+	  data => this.handleSuccess(data)
+	)
   }
 
   ngOnInit() {
-    this.imdbID;
-    // console.log(this.movieInfo) // For debugging
+	this.imdbID;
+	// console.log(this.movieInfo) // For debugging
   }
 
 }
