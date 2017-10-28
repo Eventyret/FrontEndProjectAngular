@@ -14,7 +14,7 @@ import { CapitalizePipe } from './capitalize.pipe';
 import { ScrollToModule } from 'ng2-scroll-to-el';
 import { CardStyleComponent } from './pages/card-style/card-style.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CastComponent } from './components/infoComponents/cast/cast.component';
+import { CastComponent } from './info-components/cast/cast.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PostersComponent } from './info-components/posters/posters.component';
 import { PlotComponent } from './info-components/plot/plot.component';

@@ -1,17 +1,4 @@
-<header id="page-top">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="intro-text">
-          <h1 *ngIf="errorMsg">{{errorMsg}}</h1>
-          <hr class="star-light">
-          <img class="img-fluid half-size" src="{{artwork?.hdmovielogo[0].url}}"id="hdlogo">
-          <h3 class="well">{{slashgenres}} {{type | capitalize}} Directed by: {{movie?.Director}}</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+<intro-header></intro-header>
 <a class="arrow-wrap">
 <span class="arrow" [scrollTo]="'#facts'"></span>
 </a>
@@ -91,17 +78,9 @@
 <!-- The Plot -->
 <section class="success" id="about">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>In Cinema</h2>
-        <hr class="star-light">
-      </div>
-    </div>
-    <div class="row">
       <div class="col-lg-12">
-        <p class="lead text-justify">{{movieInfo?.inCinemas | date: ddMMMMy2 }}</p>
+         <casting-component></casting-component>
       </div>
-    </div>
   </div>
 </section>
 <!-- End The plot -->

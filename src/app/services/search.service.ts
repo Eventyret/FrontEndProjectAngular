@@ -21,6 +21,12 @@ export class SearchService {
   private SONARR_KEY: string = environment.SONARR_KEY;
   private SONARR_URL: string = environment.SONARR_URL;
   private SONARR_STRING: string = '?apikey=' + this.SONARR_KEY
+  private movie_url: string = environment.IMDB_MOVIE_URL;
+  private actor_url: string = environment.IMDB_ACTOR_URL;
+  private endstring_actor: string = '?person_id=';
+  private endstring_movie: string = '?movie_id=';
+  private movieID: string;
+  private actorID: string;
 
   constructor(private http: Http) {
    }
@@ -64,4 +70,23 @@ export class SearchService {
       });
   }
 
+  getExtraMovieInfo(movieID) {
+    return this.http.get(this.movie_url + this.endstring_movie + movieID)
+      .map((res: Response): Promise<any> => {
+        return res.json();
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  getActorInfo(actorID) {
+    return this.http.get(this.actor_url + this.endstring_actor + this.actorID)
+      .map((res: Response): Promise<any> => {
+        return res.json();
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
 }
