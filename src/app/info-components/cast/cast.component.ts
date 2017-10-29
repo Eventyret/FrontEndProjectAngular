@@ -12,7 +12,7 @@ export class CastComponent implements OnInit {
   extrainfo: any[];;
   cast: any[]
   imdbID: string = sessionStorage.getItem('imdbID');
-  movieInfo: Object = JSON.parse(sessionStorage.getItem('movieInfo'));
+  movieInfo: any;
   showSpinner: boolean = true;
   constructor(private searchService: SearchService) {
 
@@ -28,6 +28,11 @@ export class CastComponent implements OnInit {
    }
 
   ngOnInit() {
+    if (localStorage["movieInfo"]) {
+      this.movieInfo = JSON.parse(sessionStorage.getItem('movieInfo'));
+    } else {
+      console.log("Its undefined")
+    }
   }
 
 }

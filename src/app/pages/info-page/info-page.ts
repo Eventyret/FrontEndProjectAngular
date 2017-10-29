@@ -19,7 +19,7 @@ export class SingleDisplayComponent implements OnInit {
   // Storing data to use in Single-Display Component
   imdbID: string = sessionStorage.getItem('imdbID');
   type: string = sessionStorage.getItem('type');
-  movieInfo:Object = JSON.parse(sessionStorage.getItem('movieInfo'));
+  movieInfo:any
   // Single outputs from arrays
   Poster: string;
   backgroundimage: string;
@@ -59,6 +59,11 @@ export class SingleDisplayComponent implements OnInit {
   }
   ngOnInit() {
     this.imdbID;
+    if (localStorage["movieInfo"]) {
+      this.movieInfo = JSON.parse(sessionStorage.getItem('movieInfo'));
+    } else {
+      console.log("Its undefined")
+    }
   }
 
 }
