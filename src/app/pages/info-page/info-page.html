@@ -1,17 +1,4 @@
-<header id="page-top">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="intro-text">
-          <h1 *ngIf="errorMsg">{{errorMsg}}</h1>
-          <hr class="star-light">
-          <img class="img-fluid half-size" src="{{artwork?.hdmovielogo[0].url}}"id="hdlogo">
-          <h3 class="well">{{slashgenres}} {{type | capitalize}} Directed by: {{movie?.Director}}</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+<intro-header></intro-header>
 <a class="arrow-wrap">
 <span class="arrow" [scrollTo]="'#facts'"></span>
 </a>
@@ -69,26 +56,32 @@
     </div>
   </div>
 </section>
-
   <!-- End The plot -->
 
 
 <section class="primary">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>Posters</h2>
-        <hr class="star-primary">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3 offset-sm-1" *ngFor="let post of posters  | slice:0:3;">
-        <img class="card-img-top" src="{{post.url}}" alt="{{movie?.title}}">
-      </div>
+<poster-components></poster-components>
     </div>
   </div>
 </section>
 
-  <footer class="container">
-    INSPIRED BY PURECSS.IO © 2015
+<!-- The Plot -->
+<section class="success" id="casting">
+  <div class="container">
+      <div class="col-lg-12">
+        <casting-component></casting-component>
+      </div>
+  </div>
+</section>
+<!-- End The plot -->
+
+  <footer class="container row-section">
+          <h2 class="text-center">
+            <a routerLink="/">
+              <span>RSSA</span>
+            </a>Created with
+            <i class="fa fa-heart" style="color:red;"></i> from Simen Daehlin
+          </h2>
   </footer>
