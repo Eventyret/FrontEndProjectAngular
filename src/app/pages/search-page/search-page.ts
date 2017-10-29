@@ -8,9 +8,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-  selector: 'app-card-style',
-  templateUrl: './card-style.component.html',
-  styleUrls: ['./card-style.component.css']
+  selector: 'search-page',
+  templateUrl: './search-page.html',
+  styleUrls: ['./search-page.css']
 })
 export class CardStyleComponent implements OnInit {
   omdbMovies: any[];
@@ -20,18 +20,21 @@ export class CardStyleComponent implements OnInit {
   type: string;
   statusMsg: string;
   movies: Object;
+  showSpinner: boolean = true;
+
   constructor(private searchService: SearchService) {
 
   }
   handleSuccess(data) {
     this.omdbMovies = data.Search;
-    console.log(data.Search);
     // Match the movies searched for
     this.omdbMovies.forEach(movie => {
       let movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID })
-      if (movies.length)
-{      console.log(movies)
-        movie.matched = true;}
+      if (movies.length){
+          movie.matched = true;
+          let inCollection = true
+        sessionStorage.setItem('inCollection', JSON.stringify(inCollection))
+        }
       else
       {  movie.matched = false;}
     });
@@ -44,6 +47,7 @@ export class CardStyleComponent implements OnInit {
       this.movies[movie.imdbId] = movie;
 }
     console.log(this.movies);
+    this.showSpinner = false;
   }
 
   handleError(error) {

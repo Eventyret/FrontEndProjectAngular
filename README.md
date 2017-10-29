@@ -1,27 +1,197 @@
-# RSSA
+# Radarr & Sonarr Search Application (RSSA)
+ 
+## Overview
+ 
+### What is this app for?
+ 
+Ever wanted to use [Radarr](https://github.com/Radarr/Radarr) or [Sonarr](https://github.com/Sonarr/Sonarr) from just a search function? Well, look no further.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
+### What does it do?
+ RSSA uses the API from [Radarr](https://github.com/Radarr/Radarr) and [Sonarr](https://github.com/Sonarr/Sonarr) to find what is in your libary. It will then match what you are searching for and display in a simple term if you have it in your collection or not.   
 
-## Development server
+### How does it work?
+ 
+RSSA will compare the result you are searching for with what you already have in your collection.
+It will load the Radarr & Sonarr JSON into one array and when you search it will loop through and check for matches. 
+It is considered to be a part of your collection if *Size on disk is greater than 0* and matches the *IMDB ID or title*.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This app uses the API's from the following resources:
+- Radarr
+- Sonarr
+- The Open Movie Database
+- FanartTV
+- [The IMDB Api](https://www.theimdbapi.org)
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Search for any movie or TV series.
+- Add a movie or TV series to your collection.
+- Grabs a random background at the first page. (If it exists)
+- Grabs the background for the movie you are looking in detail. (If it exists)
+- Adds a placeholder image if there is no poster to display.
+- "Add to Collection" button is disabled if you have it in your collection.
+- Dynamic loading - It will remove the loading animation once the array is ready.
+- Validates input - Use the search bar to find a movie or TV series. (***This cannot be blank**)
+- Custom 404 Error page with random quotes from `js\404.js`
+- Displays a **__green banner__** on top of the result if it is **__IN your collection.__**
+- Displays a **__red banner__** on top of the result if its **__NOT in your collection.__**
 
-## Build
+![Collection Preview](http://i.imgur.com/bHIfftd.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+## Want to do it yourself?
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Requirements
+- [Radarr](https://github.com/Radarr/Radarr) (This is **required** to match for movies)
+- [Sonarr](https://github.com/Sonarr/Sonarr) (This is **optional** and will match for tv series if installed)
+ 
+### Setup
+1. First, you will need to clone this repository by running the ```git clone https://github.com/Eventyret/FrontEndProject.git``` command
+2. Replace the **FANARTAPI** with your own api key, replace the **RADARRURL** and **SONARRURL** with your own urls and apikeys in `js\api.js`. 
 
-## Running end-to-end tests
+```javascript 
+var FANARTAPI = 'YOUR_API_KEY' // FanArt.tv API KEY
+var RADARRURL = 'http://localhost:7878/api/systen/status=apikey=${YOUR_API_KEY}' // Radarr URL
+var SONARRURL = 'http://localhost:8989/api/system/status?apikey=${YOUR_API_KEY}' // Sonarr URL 
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Information regarding the API endpoints can be found in their respective wiki pages below:
+- [Radarr Wiki](https://github.com/Radarr/Radarr/wiki/API)
+- [Sonarr Wiki](https://github.com/Sonarr/Sonarr/wiki/API)
+- **Fanart.tv** is used for the backgrounds and you will need to create an free account for the API key. It can be found [here](https://fanart.tv/get-an-api-key/).
+3. All configurations are done, you can run `index.html` on any server.
 
-## Further help
+# Want to test it and see how it works? [Demo here](https://eventyret.github.io/FrontEndProject)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+---
+
+## Testing
+ There have been a few things to test during this process. Here are a few examples:
+  - Loading Time / Loading Animation 
+    - This was at first just static with [`setTimeout`](https://www.w3schools.com/js/js_timing.asp) set to a specific time, the bigger the array the longer the timeout. This was changed after testing and a new function named `hideLoaderIfReady` was created. This function will check if both the movie and series array is loaded and, if function is `true`, it will remove the loading animation. This would speed up the loading time drastically and also create a dynamic loading time, depending on connections. 
+        > An example of this: `setTimeout` was set to `6000` (**6 seconds**). After using `hideLoaderIfReady`, the time was reduced down to **1.5 seconds**. By decreasing the loading time, the experience for the user will be improved with less time spent waiting for the page to load.
+
+  - The Search Form 
+    - If the user did not enter a `string` in the search field, nothing would not be display and the user's experience would be disrupted. As the user would not know if they submitted something or if the function found anything at all, this was changed after testing and I added a required attribute to the form. This would force the user to enter a `string`: If no string is added, the user will then be informed and required to fill in the necessary field. If an user search for anything that do not exsist, this would not be displayed. This was changed so that the user is presented with a  message explaining that the subject was not found.
+  - The Help Modal 
+    - Before testing, the `onload event` was used to display a modal. The problem now was that this would ruin the user's experience, because every time someone visited the `index.html` it would load up the modal again. After testing, this was changed to use a cookie to check if the modal was closed or not. If a user clicked the Close button, it would save the modal to LocalStorage and check for it on future searches.  This would create a better experience for the user, since the modal would only be displayed to new users or if users clicked the help button.
+
+
+## Technologies used
+
+<img src="https://camo.githubusercontent.com/904ade21b6fb63dec17555495bb36f749ba52023/68747470733a2f2f73332d75732d776573742d322e616d617a6f6e6177732e636f6d2f706c7567696e7365727665722f646f635265736f75726365732f737461636b2e737667" width="350px">
+
+### Some of the tech we used in this project includes:
+- [Bootstrap](http://getbootstrap.com/)
+    - We use **Bootstrap** to give our project a simple, responsive layout.
+- [Bootswatch](https://bootswatch.com)
+    - We use just a simple theme from Bootswatch, named **[Flatly](https://bootswatch.com/flatly/)**.
+- [Bootbox.js](http://bootboxjs.com/)
+    - This is for the alert boxes made into modal.
+- [jQuery](http://jquery.com/)
+    - **Included with Bootstrap** to have dynamic elements, e.g modals.
+
+## Credits
+
+- [Bradtraversy](https://github.com/bradtraversy/movieinfo) 
+    - The original page design concept and where I got the idea, using his basic tech (**Bootswatch**). A minor part of his original code still exists e.g `movieSelected`. I have then further expanded upon  the code with more / other functionalities and options. e.g matching with **Sonarr** & **Radarr**, **random background**, **static background on info.html**. 
+- [Sonarr](https://github.com/Sonarr/Sonarr)
+    - Sonarr is a PVR for Usenet and BitTorrent users for tv series.
+- [Radarr](https://github.com/Radarr/Radarr)
+    - Fork of Sonarr, but for movies.
+- [Fanart.tv](https://www.fanart.tv)
+    - Providing the API for backgrounds.
+- [The Open Movie Database](https://www.omdbapi.com/)
+    - Providing a API to search for movies and TV series this also contains the *IMDB ID and 
+    titles* used in searches.
+     
+# Todo
+
+## Search Page
+- [x] Create Page
+- [x] Initial Styling
+- [ ] Style Cards
+- [ ] Finilize Styling
+- [ ] Validate user input
+    - [ ] Undefined should not be allowed as search
+- [x] Search Functionality implemented and working
+
+## Info Page
+- [x] Create Page
+- [x] Initial Styling
+- [ ] Finilize Styling
+- [ ] Arrow between components to navigate
+- [ ] Create Back button
+- [ ] Add to Collection
+    - [ ] Hide button if we have it
+
+    ### Components
+    - [x] Header Component (Sub Components)
+        - [ ] Check if this is in our collection (that way we already have some faster loading data)
+        - [ ] Testing of if else components
+        - [ ] Don't display background if error (See Errorhandling)
+        - [ ] Display Storyline from [The IMDB Api](https://www.theimdbapi.org)
+    - [x] MovieFacts (Sub Components)
+        - [x] Initial Styling
+            - [ ] Restyle with [Bootstrap Angular Component Tabs](https://ng-bootstrap.github.io/#/components/tabs/examples)
+        - [x] Actors
+        - [x] Genres
+        - [x] Runtime
+        - [x] Release times (cinema etc)
+        - [x] Review's
+            - [ ] Restyle with [Bootstrap Angular Component](https://ng-bootstrap.github.io/#/components/rating/examples)
+        - [ ] Metadata
+            - [ ] Languages
+            - [ ] Budget
+    - [ ] Trailer Component
+        - [ ] Only display if we have data.
+
+    - [x] Plot (Sub Components)
+        - [x] Output the plot
+        - [ ] Restyle and make it look better (It's now just a splash of text)
+    -[x] Cast (Sub Components)
+        - [x] Component Created
+        - [x] Initial Styling
+            - [ ] Restyling needed to match the rest of the theme
+        - [x] Only displaying 12
+            - [ ] This should be cut down even further maybe 5?
+    - [ ] Download Component
+        - [ ] Componented Created
+        - [ ] Possible Floatable or FAB
+        - [ ] Wire up with POST API for Radarr
+        - [ ] Disable for Demo
+    - [x] Footer Component
+        - [x] Component Created
+        - [ ] Added to page
+
+## 404 Easteregg
+- [x] Create Page
+- [x] Styling Complete
+- [ ] Function that contains the 
+- [ ] Investigate a moviequote API
+- [ ] Setup a service instead of a set of quotes 
+
+## Information Page (About the project)
+
+## Shared
+
+- [x] Loading-Spinner
+- [x] Fanart Service
+- [ ] Shared Navigation
+- [x] Shared Header
+- [x] Shared Footer
+- [x] Master Service (For most api calls)
+- [x] Setup Router Functionality
+- [ ] POST API for Radarr
+    - [ ] Create Service
+    - [ ] Create Object to send
+- [ ] Error handling
+    - [ ] Services (How we going to handle errors)
+        - [ ] 404 Errors
+        - [ ] N/A Errors
+        - [ ] 500 Errors
+    - [ ] HTML / User Feedback (Display to user)
+        - [ ] 404 Errors
+        - [ ] N/A Errors
+        - [ ] 500 Errors
+        - [ ] Missing Images

@@ -1,0 +1,35 @@
+.row-section h2 {
+  float: left;
+  width: 100%;
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.row-section h2 span {
+  font-family: 'Kumar One', cursive;
+  display: block;
+  font-size: 45px;
+  text-transform: none;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.row-section h2 a {
+  color: #d2abce;
+}
+
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:visited>span {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:focus {
+  outline: none;
+}

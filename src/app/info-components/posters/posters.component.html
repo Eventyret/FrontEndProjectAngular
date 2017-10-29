@@ -1,3 +1,8 @@
-<p>
-  posters works!
-</p>
+<div class="col-lg-12 text-center">
+  <h2>Posters</h2>
+  <hr class="star-primary">
+</div>
+<div class="row">
+  <div class="col-sm-3 offset-sm-1" *ngFor="let post of posters  | slice:0:3;">
+    <img class="card-img-top" src="{{post.url}}" alt="{{movie?.title}}">
+  </div>

@@ -1,6 +1,3 @@
-<div *ngIf="searching">
-  <p>Loading</p>
-</div>
 <section class="row-section">
   <div class="container">
     <div class="row">
@@ -16,7 +13,7 @@
           <form id="searchForm">
             <div class="input-group input-group-lg">
               <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" placeholder="Search for any move or series and press enter..."
-                autofocus required>
+                autofocus required [attr.disabled]="showSpinner == true ? false : null">
               <span class="input-group-btn">
                 <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery); $event.stopPropagation();" class="btn btn-primary"
                   value="Go">
@@ -25,6 +22,7 @@
           </form>
         </div>
       </div>
+      <loading-spinner *ngIf="showSpinner"></loading-spinner>
       <div class="row">
       <div class="col-md-4" *ngFor="let movie of omdbMovies | slice:0:9;">
         <div *ngIf="movie.matched; then match else nomatch"></div>
@@ -37,9 +35,6 @@
                       <h4 class="card-title text-center">
                         <strong>{{movie.Title | truncate :  18}}</strong>
                       </h4>
-                      <!-- <p class="card-text">
-                        {{movies[movie.imdbID].overview}}
-                      </p> -->
             <div class="d-flex justify-content-md-center">
                 <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info btn-block" routerLink="/info" ngbTooltip="{{movie.Title}} is in our Collection" triggers="mouseenter:mouseleave"  placement="top"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
             </div>

@@ -2,9 +2,9 @@ import { SearchService } from '../../services/search.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-single-display',
-  templateUrl: './single-display.component.html',
-  styleUrls: ['./single-display.component.css']
+  selector: 'info-page',
+  templateUrl: './info-page.html',
+  styleUrls: ['./info-page.css']
 })
 export class SingleDisplayComponent implements OnInit {
   // Different Arrays to hold data
@@ -16,12 +16,10 @@ export class SingleDisplayComponent implements OnInit {
   ratings: any[]
   Title: string;
 
-
   // Storing data to use in Single-Display Component
   imdbID: string = sessionStorage.getItem('imdbID');
   type: string = sessionStorage.getItem('type');
   movieInfo:Object = JSON.parse(sessionStorage.getItem('movieInfo'));
-  
   // Single outputs from arrays
   Poster: string;
   backgroundimage: string;

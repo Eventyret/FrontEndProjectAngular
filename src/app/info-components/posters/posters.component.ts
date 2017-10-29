@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-posters',
+  selector: 'poster-components',
   templateUrl: './posters.component.html',
-  styleUrls: ['./posters.component.css']
+  styleUrls: [
+    '../../pages/info-page/info-page.css',
+    './posters.component.css'
+]
 })
 export class PostersComponent implements OnInit {
 
