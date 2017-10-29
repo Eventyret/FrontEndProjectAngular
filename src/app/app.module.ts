@@ -22,6 +22,7 @@ import { IntroHeaderComponent } from './info-components/intro-header/intro-heade
 import { MoviefactsComponent } from './info-components/moviefacts/moviefacts.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: '', component: CardStyleComponent},
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     MoviefactsComponent,
     FooterComponent,
     HeaderComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
