@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FanartService } from './../../services/fanart.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'intro-header',
@@ -16,8 +17,18 @@ export class IntroHeaderComponent implements OnInit {
 	Title: string;
 	imdbID: string = sessionStorage.getItem('imdbID');
 	type: string = sessionStorage.getItem('type');
+	movieInfo:any;
+	extrainfo: any[];
 
-  constructor(private fanartService: FanartService) {
+  constructor(private fanartService: FanartService, private searchService: SearchService) {
+
+		this.searchService.getExtraMovieInfo(this.imdbID).subscribe(extrainfo => {
+			this.extrainfo = extrainfo
+		}),
+			(error) => {
+				console.log(error)
+			}
+			
 	this.fanartService.getArt(this.imdbID).subscribe(artwork => {
 	  this.artwork = artwork;
 	  this.posters = artwork.movieposter;
@@ -34,14 +45,16 @@ export class IntroHeaderComponent implements OnInit {
 			this.showSpinner = true;
 		  /* document.getElementById("hdlogo").setAttribute ('src', "../../../assets/1pxtrans.png"); */
 		}
-	  },
-	  () => {
-		console.log("Fanart Loading Complete")
-		  this.showSpinner = false;
 	  })
    }
 
   ngOnInit() {
+		if (localStorage["movieInfo"]) {
+			this.movieInfo = JSON.parse(sessionStorage.getItem('movieInfo'));
+			console.log("Executed check for Localstorage")
+		} else {
+			console.log("Not executed")
+		}
 		let inCollection = JSON.parse(localStorage.getItem("inCollection"));
 		if (sessionStorage.getItem("inCollection") === null) {
 			inCollection = false;
