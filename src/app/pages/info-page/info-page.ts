@@ -29,6 +29,9 @@ export class SingleDisplayComponent implements OnInit {
 // Error & Status Messages Messages (Needs cleanup)
   errorMsg: string;
   showSpinner: boolean = true;
+  extrainfo: any[];;
+  cast: any[]
+  loaded: boolean = false;
 
 
   constructor(private searchService: SearchService) {
@@ -38,24 +41,29 @@ export class SingleDisplayComponent implements OnInit {
       this.actors = movie.Actors.split(",");
       this.slashgenres = movie.Genre.replace(/,/g, " /");
       this.slashlang = movie.Language.replace(/,/g, " /");
-        this.ratings = movie.Ratings
-        this.showSpinner = false;
+      this.ratings = movie.Ratings
+      this.showSpinner = false;
     }),
     (error)=> {
-        /* console.log(error) */
+
             }, 
             () => {
                 console.log("Single Movie Loading Complete")
 }
-
-    // Lets go get our fanart data.
- 
+// Lets grab some extra information for this movie.
+    this.searchService.getExtraMovieInfo(this.imdbID).subscribe(extrainfo => {
+      this.extrainfo = extrainfo
+      this.cast = extrainfo.cast
+      console.log(this.extrainfo);
+      this.showSpinner = false;
+      this.loaded = true;
+    }),
+      (error) => {
+        console.log(error)
+      }
   }
-
-    // this is how we handle our data we get back for a single movie
   handleSuccess(data) {
     this.movie = data;
-    /* console.log(data); */
   }
   ngOnInit() {
     this.imdbID;

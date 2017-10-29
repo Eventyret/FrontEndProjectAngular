@@ -14,7 +14,6 @@ import { CapitalizePipe } from './capitalize.pipe';
 import { ScrollToModule } from 'ng2-scroll-to-el';
 import { CardStyleComponent } from './pages/search-page/search-page';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CastComponent } from './info-components/cast/cast.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PostersComponent } from './info-components/posters/posters.component';
 import { PlotComponent } from './info-components/plot/plot.component';
@@ -37,7 +36,6 @@ const appRoutes: Routes = [
     PageNotFound404Component,
     CapitalizePipe,
     CardStyleComponent,
-    CastComponent,
     LoadingSpinnerComponent,
     PostersComponent,
     PlotComponent,

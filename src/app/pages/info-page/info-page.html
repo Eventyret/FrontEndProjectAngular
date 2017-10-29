@@ -68,13 +68,32 @@
 </section>
 
 <!-- The Plot -->
-<section class="success" id="casting">
+<section class="success" id="casting" ng>
   <div class="container">
       <div class="col-lg-12">
-        <casting-component></casting-component>
+        <loading-spinner *ngIf="showSpinner"></loading-spinner>
+        <div class="row">
+          <div class="col-md-3" *ngFor="let info of cast | slice:0:12;">
+            <div class="card">
+              <div class="header"></div>
+              <div class="avatar">
+                <img src="{{info.image}}" alt="{{info.name}} as {{info.character}}" onError="this.src='../../../assets/notfound.jpg'">
+              </div>
+              <div class="content">
+                <p>{{info.name | words : 3}}
+                  <br> {{info.character | words : 2}}</p>
+                <p>
+                  <a href="{{info.link}}" class="btn btn-info btn">Imdb Profile</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
   </div>
 </section>
+
+
 <!-- End The plot -->
 
   <footer class="container row-section">
