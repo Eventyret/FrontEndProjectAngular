@@ -5,40 +5,61 @@
 
 <div class="content-wrapper">
 <section class="primary" id="facts">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2>Movie Facts</h2>
-        <hr class="star-primary">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Movie Facts</h2>
+          <hr class="star-primary">
+        </div>
       </div>
+      <div class="row">
+<ngb-tabset [justify]="justified">
+  <ngb-tab title="Actors">
+    <ng-template ngbTabContent>
+                <loading-spinner *ngIf="showSpinner"></loading-spinner>
+                <div class="row">
+                  <div class="col-md-3" *ngFor="let info of cast | slice:0:12;">
+                    <div class="card">
+                      <div class="header"></div>
+                      <div class="avatar">
+                        <img src="{{info.image}}" alt="{{info.name}} as {{info.character}}" onError="this.src='../../../assets/notfound.jpg'">
+                      </div>
+                      <div class="content">
+                        <p>{{info.name | words : 3}}
+                          <br> {{info.character | words : 2}}</p>
+                        <p>
+                          <a href="{{info.link}}" class="btn btn-info btn">Imdb Profile</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Fancy</b> title</ng-template>
+    <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft
+        beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
+        PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero
+        magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard
+        ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente
+        accusamus tattooed echo park.</p>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Ratings">
+    <ng-template ngbTabContent>
+      <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master
+        cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
+        synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan
+        aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
     </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <ul class="list-group">
-          <li class="list-group-item active">Actors</li>
-          <li class="list-group-item" *ngFor="let actor of actors">{{actor}}</li>
-        </ul>
-      </div>
-      <div class="col-sm-4">
-        <ul class="list-group">
-          <li class="list-group-item active">Actors</li>
-          <li class="list-group-item">Languages: {{slashlang}}</li>
-          <li class="list-group-item">Genres: {{slashgenres}}</li>
-          <li class="list-group-item">Released: {{movie?.Released}}</li>
-        </ul>
-      </div>
-
-      <div class="col-sm-4">
-        <ul class="list-group">
-          <li class="list-group-item active">Ratings</li>
-          <li class="list-group-item" *ngFor="let rating of ratings">{{rating.Source}}: {{rating.Value}}</li>
-          <li class="list-group-item">IMDB Rating: {{movie?.imdbRating}}</li>
-        </ul>
-      </div>
-
     </div>
-  </div>
-</section>
+    </section>
 
  <!-- The Plot -->
 <section class="success" id="about">
@@ -66,35 +87,6 @@
     </div>
   </div>
 </section>
-
-<!-- The Plot -->
-<section class="success" id="casting" ng>
-  <div class="container">
-      <div class="col-lg-12">
-        <loading-spinner *ngIf="showSpinner"></loading-spinner>
-        <div class="row">
-          <div class="col-md-3" *ngFor="let info of cast | slice:0:12;">
-            <div class="card">
-              <div class="header"></div>
-              <div class="avatar">
-                <img src="{{info.image}}" alt="{{info.name}} as {{info.character}}" onError="this.src='../../../assets/notfound.jpg'">
-              </div>
-              <div class="content">
-                <p>{{info.name | words : 3}}
-                  <br> {{info.character | words : 2}}</p>
-                <p>
-                  <a href="{{info.link}}" class="btn btn-info btn">Imdb Profile</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</section>
-
-
-<!-- End The plot -->
 
   <footer class="container row-section">
           <h2 class="text-center">

@@ -1,5 +1,6 @@
 import { SearchService } from '../../services/search.service';
 import { Component, OnInit } from '@angular/core';
+import { NgbTabset, NgbRating } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'info-page',
@@ -39,7 +40,6 @@ export class SingleDisplayComponent implements OnInit {
       this.movie = movie;
       this.Title = movie.Title
       this.actors = movie.Actors.split(",");
-      this.slashgenres = movie.Genre.replace(/,/g, " /");
       this.slashlang = movie.Language.replace(/,/g, " /");
       this.ratings = movie.Ratings
       this.showSpinner = false;
