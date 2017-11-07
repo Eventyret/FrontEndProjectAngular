@@ -12,14 +12,15 @@
         <div class="jumbotron vertical-center" id="search">
           <form id="searchForm">
             <div class="input-group input-group-lg">
-              <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" placeholder="Search for any move or series and press enter..."
-                autofocus required [attr.disabled]="showSpinner == true ? false : null">
+              <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" ngModel name="search" #search="ngModel" placeholder="Search for any move or series and press enter..." autofocus required [attr.disabled]="showSpinner == true ? false : null">
               <span class="input-group-btn">
-                <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery); $event.stopPropagation();" class="btn btn-primary"
-                  value="Go">
+                <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery); $event.stopdsdaPropagation();" class="btn btn-primary"
+                  value="Go"[disabled]="!search.valid">
               </span>
             </div>
           </form>
+<div class="alert alert-danger" *ngIf="search.touched && !search.valid">
+</div>
         </div>
       </div>
       <loading-spinner *ngIf="showSpinner"></loading-spinner>
