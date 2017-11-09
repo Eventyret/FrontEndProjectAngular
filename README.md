@@ -112,8 +112,8 @@ Information regarding the API endpoints can be found in their respective wiki pa
 - [x] Initial Styling
 - [ ] Style Cards
 - [ ] Finilize Styling
-- [ ] Validate user input
-    - [ ] Undefined should not be allowed as search
+- [x] Validate user input
+    - [x] Undefined should not be allowed as search
 - [x] Search Functionality implemented and working
 
 ## Info Page
