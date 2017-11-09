@@ -30,15 +30,19 @@ export class SearchService {
 
   constructor(private http: Http) {
    }
+  handleError(error: Response | any) {
+    return Observable.throw(new Error(error.status))
+  }
   
    getMovies(query) {
      return this.http.get(this.OMDB_URL + '?s=' + query + this.OMDB_STRING + '&type=movie' )
        .map((res: Response): Promise<any> => {
-         return res.json();
+         if (res.ok){
+           return res.json();
+         } else {
+           this.handleError(res)
+         }
        })
-       .catch((error: Response) => {
-         return Observable.throw(error.json());
-       });
    }
 
   getSingleMovie(imdbID){

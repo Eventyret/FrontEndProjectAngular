@@ -60,7 +60,7 @@ export class CardStyleComponent implements OnInit {
   searchMovies(query: string) {
     return this.searchService.getMovies(query).subscribe(
       data => this.handleSuccess(data),
-      (error) => {
+      error => {
         this.statusMsg = 'We are having some problems with the servce, please try again later.'
       },
     );
