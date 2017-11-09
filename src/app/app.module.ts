@@ -13,7 +13,6 @@ import { PageNotFound404Component } from './pages/page-not-found-404/page-not-fo
 import { CapitalizePipe } from './capitalize.pipe';
 import { ScrollToModule } from 'ng2-scroll-to-el';
 import { CardStyleComponent } from './pages/search-page/search-page';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PostersComponent } from './info-components/posters/posters.component';
 import { PlotComponent } from './info-components/plot/plot.component';
@@ -22,6 +21,8 @@ import { MoviefactsComponent } from './info-components/moviefacts/moviefacts.com
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { GrowlModule } from 'primeng/primeng';
+import { SidebarModule } from 'primeng/primeng';
 
 const appRoutes: Routes = [
   { path: '', component: CardStyleComponent},
@@ -53,12 +54,13 @@ const appRoutes: Routes = [
     TruncateModule,
     RouterModule.forRoot(appRoutes),
     ScrollToModule.forRoot(),
-    NgbModule.forRoot()
+    GrowlModule,
+    SidebarModule
 
   ],
   providers: [
     SearchService,
-    FanartService
+    FanartService,
   ],
   bootstrap: [AppComponent]
 })

@@ -4,7 +4,8 @@ import { CapitalizePipe } from '../../capitalize.pipe';
 import _ from "lodash";
 import { SearchService } from '../../services/search.service';
 import { forEach } from '@angular/router/src/utils/collection';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Message } from 'primeng/primeng';
+
 
 
 @Component({
@@ -21,6 +22,7 @@ export class CardStyleComponent implements OnInit {
   statusMsg: string;
   movies: Object;
   showSpinner: boolean = true;
+  msgs: Message[] = [];
 
   constructor(private searchService: SearchService) {
 
@@ -80,6 +82,11 @@ export class CardStyleComponent implements OnInit {
     sessionStorage.setItem("type", type)
     sessionStorage.setItem('movieInfo', JSON.stringify(this.movies[imdbID]));
     console.log(imdbID)
+  }
+
+  showSuccess() {
+    this.msgs = [];
+    this.msgs.push({ severity: 'success', summary: 'Added to Libary', detail: 'Move has been sent to Radarr' });
   }
 
   ngOnInit() {

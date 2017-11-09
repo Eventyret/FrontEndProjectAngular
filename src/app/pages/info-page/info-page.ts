@@ -1,6 +1,5 @@
 import { SearchService } from '../../services/search.service';
 import { Component, OnInit } from '@angular/core';
-import { NgbTabset, NgbRating } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'info-page',

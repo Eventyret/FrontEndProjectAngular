@@ -1,3 +1,4 @@
+
 <section class="row-section">
   <div class="container">
     <div class="row">
@@ -27,6 +28,12 @@
         </div>
       </div>
       <loading-spinner *ngIf="showSpinner"></loading-spinner>
+<p-growl [(value)]="msgs">
+</p-growl>
+<!-- <button type="text" (click)="display = true"  label="Show"></button>
+<p-sidebar [(visible)]="display" position="bottom" [baseZIndex]="10000">
+  Content
+</p-sidebar> -->
       <div class="row">
       <div class="col-md-4" *ngFor="let movie of omdbMovies | slice:0:9;">
         <div *ngIf="movie.matched; then match else nomatch"></div>
@@ -40,7 +47,7 @@
                         <strong>{{movie.Title | truncate :  18}}</strong>
                       </h4>
             <div class="d-flex justify-content-md-center">
-                <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info btn-block" routerLink="/info" ngbTooltip="{{movie.Title}} is in our Collection" triggers="mouseenter:mouseleave"  placement="top"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
+                <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info btn-block" routerLink="/info"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
             </div>
           </div>
         </div>
@@ -55,8 +62,8 @@
               </h4>
               <div class="d-flex justify-content-md-center">
                 <div class="btn-group" role="group">
-                  <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info" routerLink="/info" ngbTooltip="{{movie.Title}} is NOT in our Collection" triggers="mouseenter:mouseleave"  placement="top"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
-                  <button class="btn btn-outline-success" ngbTooltip="Clicking here would send a post request to Radarr (Disabled)"><i class="fa fa-cloud-download"></i> Send to Libary</button>
+                <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info" routerLink="/info"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
+                  <button class="btn btn-outline-success" (click)="showSuccess()"><i class="fa fa-cloud-download"></i> Send to Libary</button>
                 </div>
               </div>
             </div>
