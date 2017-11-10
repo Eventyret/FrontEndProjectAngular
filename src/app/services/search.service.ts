@@ -28,69 +28,54 @@ export class SearchService {
   private movieID: string;
   private actorID: string;
 
-  constructor(private http: Http) {
-   }
-  handleError(error: Response | any) {
-    return Observable.throw(new Error(error.status))
+  constructor(private http: Http) {}
+
+  private handleError(err){
+	    let errMessage: string;
+
+		  if (err instanceof Response){
+				let body = err.json() || '';
+				let error = body.error || JSON.stringify(body);
+				errMessage = `${err.status}  ${err.statusText || '' } ${error}`
+		  } else {
+			  errMessage = err.message ? err.message : err.toString();
+		  }
+		  return Observable.throw(errMessage);
   }
   
    getMovies(query) {
      return this.http.get(this.OMDB_URL + '?s=' + query + this.OMDB_STRING + '&type=movie' )
-       .map((res: Response): Promise<any> => {
-         if (res.ok){
-           return res.json();
-         } else {
-           this.handleError(res)
-         }
-       })
-   }
+     .map(res =>res.json())
+	  .catch(this.handleError);
+	}
 
   getSingleMovie(imdbID){
     return this.http.get(this.OMDB_URL + '?i=' + imdbID + this.OMDB_STRING + '&plot=full')
-      .map((res: Response): Promise<any> => {
-        return res.json();
-      })
-      .catch((error: Response) => {
-        return Observable.throw(error.json());
-      });
-  }
+	  .map(res =>res.json())
+	  .catch(this.handleError);
+	}
   
   checkMovies() {
     return this.http.get(this.RADAR_URL + this.RADAR_STRING)
-      .map((res: Response): Promise<any> => {
-        return res.json();
-      })
-      .catch((error: Response) => {
-        return Observable.throw(error.json());
-      });
-  }
+      .map(res =>res.json())
+	  .catch(this.handleError);	  
+	}
+
   checkSeries(){
     return this.http.get(this.SONARR_URL + this.SONARR_STRING)
-      .map((res: Response): Promise<any> => {
-        return res.json();
-      })
-      .catch((error: Response) => {
-        return Observable.throw(error.json());
-      });
-  }
+       .map(res =>res.json())
+	  .catch(this.handleError);	  
+	}
 
   getExtraMovieInfo(movieID) {
     return this.http.get(this.movie_url + this.endstring_movie + movieID)
-      .map((res: Response): Promise<any> => {
-        return res.json();
-      })
-      .catch((error: Response) => {
-        return Observable.throw(error.json());
-      });
-  }
+       .map(res =>res.json())
+	  .catch(this.handleError);	  
+	}
 
   getActorInfo(actorID) {
     return this.http.get(this.actor_url + this.endstring_actor + this.actorID)
-      .map((res: Response): Promise<any> => {
-        return res.json();
-      })
-      .catch((error: Response) => {
-        return Observable.throw(error.json());
-      });
-  }
+       .map(res =>res.json())
+	  .catch(this.handleError);	  
+	}
 }
