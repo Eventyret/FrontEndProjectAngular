@@ -11,7 +11,6 @@ import { SingleDisplayComponent } from './pages/info-page/info-page';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFound404Component } from './pages/page-not-found-404/page-not-found-404.component';
 import { CapitalizePipe } from './capitalize.pipe';
-import { ScrollToModule } from 'ng2-scroll-to-el';
 import { CardStyleComponent } from './pages/search-page/search-page';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { PostersComponent } from './info-components/posters/posters.component';
@@ -50,7 +49,6 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     TruncateModule,
     RouterModule.forRoot(appRoutes),
-    ScrollToModule.forRoot()
 
   ],
   providers: [
