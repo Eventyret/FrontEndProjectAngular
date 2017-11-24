@@ -21,9 +21,6 @@ import { MoviefactsComponent } from './info-components/moviefacts/moviefacts.com
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { GrowlModule } from 'primeng/primeng';
-import { SidebarModule } from 'primeng/primeng';
-
 const appRoutes: Routes = [
   { path: '', component: CardStyleComponent},
   {path: 'info', component:SingleDisplayComponent},
@@ -53,9 +50,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     TruncateModule,
     RouterModule.forRoot(appRoutes),
-    ScrollToModule.forRoot(),
-    GrowlModule,
-    SidebarModule
+    ScrollToModule.forRoot()
 
   ],
   providers: [

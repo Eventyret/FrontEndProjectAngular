@@ -16,19 +16,26 @@ export class FanartService {
   private API_KEY: string = environment.FANART_KEY;
   private API_URL: string = environment.FANART_URL;
   private endstring: string = '?api_key=' + this.API_KEY;
-  artworkIsEmptied: EventEmitter<string> = new EventEmitter<string>();
+
+  constructor(private http: Http) {}
 
 
-  constructor(private http: Http) {
+    private handleError(err){
+	    let errMessage: string;
+
+		  if (err instanceof Response){
+				let body = err.json() || '';
+				let error = body.error || JSON.stringify(body);
+				errMessage = `${err.status}  ${err.statusText || '' } ${error}`
+		  } else {
+			  errMessage = err.message ? err.message : err.toString();
+		  }
+		  return Observable.throw(errMessage);
   }
 
   getArt(imdbID) {
-    return this.http.get(this.API_URL + imdbID + this.endstring)
-      .map((res: Response): Promise<any> => {
-        return res.json();
-      })
-      .catch((error: Response) => {
-        return Observable.throw(error.json());
-      });
-  }
+	return this.http.get(this.API_URL + imdbID + this.endstring)
+	.map(res =>res.json())
+	.catch(this.handleError);
+	}
 }

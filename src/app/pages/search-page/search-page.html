@@ -23,17 +23,11 @@
 <div class="alert alert-danger" *ngIf="search.touched && !search.valid">
 </div>
 <div *ngIf="errors" class="alert alert-danger">
-  {{ error.status }}
+ {{ errorMessage }}
 </div>
         </div>
       </div>
       <loading-spinner *ngIf="showSpinner"></loading-spinner>
-<p-growl [(value)]="msgs">
-</p-growl>
-<!-- <button type="text" (click)="display = true"  label="Show"></button>
-<p-sidebar [(visible)]="display" position="bottom" [baseZIndex]="10000">
-  Content
-</p-sidebar> -->
       <div class="row">
       <div class="col-md-4" *ngFor="let movie of omdbMovies | slice:0:9;">
         <div *ngIf="movie.matched; then match else nomatch"></div>
