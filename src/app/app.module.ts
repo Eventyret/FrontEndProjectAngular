@@ -20,6 +20,8 @@ import { MoviefactsComponent } from './info-components/moviefacts/moviefacts.com
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MessageModule, MessagesModule } from 'primeng/primeng';
+
 const appRoutes: Routes = [
   { path: '', component: CardStyleComponent},
   {path: 'info', component:SingleDisplayComponent},
@@ -48,6 +50,8 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     TruncateModule,
+    MessageModule,
+    MessagesModule,
     RouterModule.forRoot(appRoutes),
 
   ],
