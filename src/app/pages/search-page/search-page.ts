@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TruncateModule } from 'ng2-truncate';
-import { CapitalizePipe } from '../../capitalize.pipe'; 
+import { CapitalizePipe } from '../../capitalize.pipe';
 import _ from "lodash";
 import { SearchService } from '../../services/search.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { MessageModule } from "primeng/primeng";
 
 
 
@@ -26,7 +27,7 @@ export class CardStyleComponent implements OnInit {
   constructor(private searchService: SearchService) {}
 
   /**
-   * 
+   *
    * @param data the movies the user searched for
    */
   handleSuccess(data) {
@@ -44,7 +45,7 @@ export class CardStyleComponent implements OnInit {
 
   }
   /**
-   * This will filter out our movies towards what 
+   * This will filter out our movies towards what
    * the user has searched for
    * @param info this is the libary from Radarr
    */
@@ -85,7 +86,7 @@ export class CardStyleComponent implements OnInit {
    * This will save all info to session storage so we can get it at a later date.
    * @param imdbID the ID of the movie
    * @param type What type the movie is this can either be movie or series
-   *  
+   *
    */
   storeMovie(imdbID, type) {
     sessionStorage.setItem("imdbID", imdbID);
