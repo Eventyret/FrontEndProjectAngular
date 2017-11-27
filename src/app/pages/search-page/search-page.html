@@ -19,12 +19,8 @@
                   value="Go"[disabled]="!search.valid">
               </span>
             </div>
+            <p-message severity="error" text="Field is required" *ngIf="search.touched && !search.valid"></p-message>
           </form>
-<div class="alert alert-danger" *ngIf="search.touched && !search.valid">
-</div>
-<div *ngIf="errors" class="alert alert-danger">
- {{ errorMessage }}
-</div>
         </div>
       </div>
       <loading-spinner *ngIf="showSpinner"></loading-spinner>
@@ -35,7 +31,7 @@
 
         <div class="card card-01 height-fix">
           <img class="card-img-top" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'" alt="{{movie.Title}}">
-          
+
           <div class="card-img-overlay match">
                       <h4 class="card-title text-center">
                         <strong>{{movie.Title | truncate :  18}}</strong>
@@ -49,7 +45,7 @@
           <ng-template #nomatch>
           <div class="card card-01 height-fix">
             <img class="card-img-top" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'" alt="{{movie.Title}}">
-          
+
             <div class="card-img-overlay nomatch">
               <h4 class="card-title text-center">
                 <strong>{{movie.Title | truncate : 18}}</strong>
