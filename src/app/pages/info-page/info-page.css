@@ -171,7 +171,8 @@ section.success {
   border-style: solid;
   border-width: 3em 3em 0 3em;
   border-color: #ffffff transparent transparent transparent;
-  -webkit-transform: rotate(360deg)
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 
 .arrow:after {
@@ -184,12 +185,15 @@ section.success {
   border-style: solid;
   border-width: 3em 3em 0 3em;
   border-color: #111 transparent transparent transparent;
-  -webkit-transform: rotate(360deg)
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
 }
 
 .arrow-wrap .arrow {
   -webkit-animation: arrows 2.8s 0.4s;
+  animation: arrows 2.8s 0.4s;
   -webkit-animation-delay: 3s;
+  animation-delay: 3s;
 }
 
 .card {
