@@ -32,53 +32,52 @@ export class CardStyleComponent implements OnInit {
   handleSuccess(data) {
     this.omdbMovies = data.Search;
     this.omdbMovies.forEach(movie => {
-      const  movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
+      const movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
       if (movies.length) {
-          movie.matched = true;
-          const  inCollection = true;
+        movie.matched = true;
+        const inCollection = true;
         sessionStorage.setItem("inCollection", JSON.stringify(inCollection));
-      }else {
+      } else {
         movie.matched = false;
       }
     });
-
   }
   /**
    * This will filter out our movies towards what
    * the user has searched for
-   * @param info this is the libary from Radarr
+   * @param info this is the library   from Radarr
    */
   handleOwnMovies(info) {
     this.radarrMovies = info;
     this.movies = {};
-      for (const movie of this.radarrMovies) {
+    for (const movie of this.radarrMovies) {
       this.movies[movie.imdbId] = movie;
-}
-    /* console.log(this.movies); */  //  For Debugging
-    this.showSpinner = false;
+    } //  For Debugging
+    /* console.log(this.movies); */ this.showSpinner = false;
   }
 
   searchMovies(query: string) {
     return this.searchService.getMovies(query).subscribe(
-      (data) => {
+      data => {
         this.handleSuccess(data);
       },
-      (err) => {
+      err => {
         this.errorMessage = err;
         console.error(err);
       }
     );
-}
+  }
 
   checkOwnMovies() {
     return this.searchService.checkMovies().subscribe(
-      (info) => {
+      info => {
         this.handleOwnMovies(info);
       },
-      (err) => {
+      err => {
         this.errorMessage = err;
         console.error(err);
-      });
+      }
+    );
   }
 
   /**
@@ -89,13 +88,11 @@ export class CardStyleComponent implements OnInit {
    */
   storeMovie(imdbID, type) {
     sessionStorage.setItem("imdbID", imdbID);
-    sessionStorage.setItem("type", type)
+    sessionStorage.setItem("type", type);
     sessionStorage.setItem("movieInfo", JSON.stringify(this.movies[imdbID]));
   }
-
 
   ngOnInit() {
     this.checkOwnMovies();
   }
-
 }

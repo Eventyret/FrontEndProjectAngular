@@ -34,7 +34,6 @@ header .intro-text .skills {
   font-weight: 300;
 }
 
-
 .content-wrapper {
   background-color: white;
   top: 90%;
@@ -57,7 +56,7 @@ header .intro-text .skills {
 }
 
 .row-section h2 span {
-  font-family: 'Kumar One', cursive;
+  font-family: "Kumar One", cursive;
   display: block;
   font-size: 45px;
   text-transform: none;
@@ -74,7 +73,7 @@ a {
   color: #212121;
 }
 
-a:visited>span {
+a:visited > span {
   text-decoration: none;
   color: #212121;
 }
@@ -82,8 +81,6 @@ a:visited>span {
 a:focus {
   outline: none;
 }
-
-
 
 section {
   padding: 100px 0;
@@ -110,8 +107,8 @@ hr.star-primary:after {
   content: "\f005";
   display: inline-block;
   position: relative;
-  top: -.8em;
-  padding: 0 .25em;
+  top: -0.8em;
+  padding: 0 0.25em;
   font-family: FontAwesome;
   font-size: 2em;
 }
@@ -176,7 +173,7 @@ section.success {
 }
 
 .arrow:after {
-  content: '';
+  content: "";
   position: absolute;
   top: -3.2em;
   left: -3em;
@@ -199,7 +196,7 @@ section.success {
 .card {
   overflow: hidden;
   position: relative;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   border-radius: 8px;
   text-align: center;
   padding: 0;
@@ -214,7 +211,7 @@ section.success {
   left: 0;
   width: 100%;
   height: 70px;
-  border-bottom: 1px #FFF solid;
+  border-bottom: 1px #fff solid;
   /* This positions the canvas under the text */
   z-index: 1;
 }
@@ -249,8 +246,8 @@ hr.star-primary:after {
   content: "\f005";
   display: inline-block;
   position: relative;
-  top: -.8em;
-  padding: 0 .25em;
+  top: -0.8em;
+  padding: 0 0.25em;
   font-family: FontAwesome;
   font-size: 2em;
 }
@@ -272,4 +269,3 @@ hr.star-primary:after {
   color: #2c3e50;
   background-color: #fff;
 }
-
