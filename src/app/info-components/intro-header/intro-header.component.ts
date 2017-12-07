@@ -26,21 +26,16 @@ export class IntroHeaderComponent implements OnInit {
   constructor(
     private fanartService: FanartService,
     private searchService: SearchService
-  ) {
-    this.searchService.getExtraMovieInfo(this.imdbID).subscribe(extrainfo => {
-      this.extrainfo = extrainfo;
-    });
+  ){}
 
-    this.fanartService.getArt(this.imdbID).subscribe(
-      artwork => {
+getArtwork(){
+    this.fanartService.getArt(this.imdbID).subscribe(artwork => {
         this.artwork = artwork;
         this.posters = artwork.movieposter;
         this.backgroundimage = artwork.moviebackground[0].url;
-        document.getElementById("page-top").style.backgroundImage =
-          "url('" + this.backgroundimage + "')";
+        document.getElementById("page-top").style.backgroundImage = "url('" + this.backgroundimage + "')";
         this.showSpinner = true;
-      },
-      error => {
+      }, error => {
         console.log(error);
         this.errorMsg = error["error message"];
         if (this.errorMsg === "Not found") {
@@ -49,11 +44,10 @@ export class IntroHeaderComponent implements OnInit {
           this.showSpinner = true;
           /* document.getElementById("hdlogo").setAttribute ('src', "../../../assets/1pxtrans.png"); */
         }
-      }
-    );
-  }
-
+      });
+}
   ngOnInit() {
+    this.getArtwork();
     if (localStorage["movieInfo"]) {
       this.movieInfo = JSON.parse(sessionStorage.getItem("movieInfo"));
       console.log("Executed check for Local Storage");
