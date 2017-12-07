@@ -52,8 +52,8 @@ export class CardStyleComponent implements OnInit {
 		this.movies = {};
 		for (const movie of this.radarrMovies) {
 			this.movies[movie.imdbId] = movie;
-		} //  For Debugging
-		/* console.log(this.movies); */ this.showSpinner = false;
+		}
+		this.showSpinner = false;
 	}
 
 	searchMovies(query: string) {
