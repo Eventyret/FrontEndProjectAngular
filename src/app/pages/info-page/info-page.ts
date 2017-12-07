@@ -55,16 +55,13 @@ export class SingleDisplayComponent implements OnInit {
         this.showSpinner = false;
       },
       (error: Response) => {
-        if(error.status === 404){
-          alert("Error 404")
+        if (error.status === 404) {
+          alert("Error 404");
         } else {
           alert("An unexpected error occured");
           console.log(error);
         }
       }
     );
-  }
-  handleSuccess(data) {
-    this.movie = data;
   }
 }
