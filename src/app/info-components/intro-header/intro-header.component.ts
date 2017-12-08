@@ -50,7 +50,7 @@ export class IntroHeaderComponent implements OnInit {
 	}
 	ngOnInit() {
 		this.getArtwork();
-		if (localStorage["movieInfo"]) {
+		if (sessionStorage["movieInfo"]) {
 			this.movieInfo = JSON.parse(sessionStorage.getItem("movieInfo"));
 			console.log("Executed check for Local Storage");
 		} else {

@@ -3,6 +3,7 @@ import { SearchService } from "../../services/search.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
+	// tslint:disable-next-line:component-selector
 	selector: "info-page",
 	templateUrl: "./info-page.html",
 	styleUrls: ["./info-page.css"]
@@ -37,11 +38,13 @@ export class SingleDisplayComponent implements OnInit {
 
 	// Lets grab some extra information for this movie.
 	ngOnInit() {
-		if (localStorage["movieInfo"]) {
+		if (sessionStorage["movieInfo"]) {
 			this.movieInfo = JSON.parse(sessionStorage.getItem("movieInfo"));
+			console.log(this.movieInfo);
 		} else {
 			console.log("Its undefined");
 		}
+
 	}
 
 	singleMovie() {
