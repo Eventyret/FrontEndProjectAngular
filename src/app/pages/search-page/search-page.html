@@ -1,4 +1,5 @@
 
+<p-growl></p-growl>
 <section class="row-section">
   <div class="container">
     <div class="row">
@@ -19,7 +20,6 @@
                   value="Go"[disabled]="!search.valid">
               </span>
             </div>
-            <p-message severity="error" text="Field is required" *ngIf="search.touched && !search.valid"></p-message>
           </form>
         </div>
       </div>
@@ -30,11 +30,11 @@
         <ng-template #match>
 
         <div class="card card-01 height-fix">
-          <img class="card-img-top" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'" alt="{{movie.Title}}">
+		<img class="card-img-top" [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
 
           <div class="card-img-overlay match">
                       <h4 class="card-title text-center">
-                        <strong>{{movie.Title | truncate :  18}}</strong>
+                        <strong>{{movie.Title | truncate :  18}}</strong>2
                       </h4>
             <div class="d-flex justify-content-md-center">
                 <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info btn-block" routerLink="/info"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
@@ -44,7 +44,7 @@
         </ng-template>
           <ng-template #nomatch>
           <div class="card card-01 height-fix">
-            <img class="card-img-top" src="{{movie.Poster}}" onError="this.src='../../../assets/notfound.jpg'" alt="{{movie.Title}}">
+            <img class="card-img-top" [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
 
             <div class="card-img-overlay nomatch">
               <h4 class="card-title text-center">

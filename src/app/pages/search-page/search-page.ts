@@ -2,7 +2,7 @@ import { AppError } from "./../../services/app.error";
 import { Component, OnInit } from "@angular/core";
 import { TruncateModule } from "ng2-truncate";
 import { CapitalizePipe } from "../../capitalize.pipe";
-import _ from "lodash";
+import * as _ from "lodash";
 import { SearchService } from "../../services/search.service";
 import { forEach } from "@angular/router/src/utils/collection";
 import { NotFoundError } from "../../services/not-found-error";
@@ -65,7 +65,7 @@ export class CardStyleComponent implements OnInit {
 				if (error instanceof NotFoundError) {
 					alert("This is a 404 error");
 				} else {
-					alert("An Unepected error occured.");
+					throw error;
 				}
 			}
 		);
@@ -80,7 +80,7 @@ export class CardStyleComponent implements OnInit {
 				if (error instanceof NotFoundError) {
 					alert("This is a 404 error");
 				} else {
-					alert("An Unepected error occured.");
+					throw error;
 				}
 			}
 		);
@@ -96,6 +96,14 @@ export class CardStyleComponent implements OnInit {
 		sessionStorage.setItem("imdbID", imdbID);
 		sessionStorage.setItem("type", type);
 		sessionStorage.setItem("movieInfo", JSON.stringify(this.movies[imdbID]));
+	}
+
+	posterError(poster) {
+		if (poster === "N/A") {
+			return "../../../assets/404PosterNotFound.jpg";
+		} else {
+			return poster;
+		}
 	}
 
 	ngOnInit() {

@@ -83,7 +83,8 @@ h3 {
 }
 
 .card-01.height-fix .card-img-top {
-  width: auto!important;
+  width: auto !important;
+  height: 90%;
 }
 
 .card-01.height-fix .card-img-overlay.nomatch {
