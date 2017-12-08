@@ -20,6 +20,7 @@ export class SearchService {
 	private RADAR_STRING: string = "?apikey=" + this.RADARR_KEY;
 
 	private handleError(error: Response) {
+		console.log(error);
 			return Observable.throw(error);
 		}
 
