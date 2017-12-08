@@ -20,45 +20,50 @@ import { MoviefactsComponent } from "./info-components/moviefacts/moviefacts.com
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { MessageModule, MessagesModule } from "primeng/primeng";
+import { MessageModule, MessagesModule, GrowlModule } from "primeng/primeng";
+import { ErrorHandler } from "@angular/core";
+import { AppErrorHandler } from "./services/errors/appErrorHandler";
+import { MessageService } from "primeng/components/common/messageservice";
 
 const appRoutes: Routes = [
-  { path: "", component: CardStyleComponent },
-  { path: "info", component: SingleDisplayComponent },
-  { path: "404", component: PageNotFound404Component }
+	{ path: "", component: CardStyleComponent },
+	{ path: "info", component: SingleDisplayComponent },
+	{ path: "404", component: PageNotFound404Component }
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SingleDisplayComponent,
-    PageNotFound404Component,
-    CapitalizePipe,
-    CardStyleComponent,
-    LoadingSpinnerComponent,
-    PostersComponent,
-    PlotComponent,
-    IntroHeaderComponent,
-    MoviefactsComponent,
-    FooterComponent,
-    HeaderComponent,
-    NavbarComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    TruncateModule,
-    MessageModule,
-    MessagesModule,
-    RouterModule.forRoot(appRoutes),
-
-  ],
-  providers: [
-    SearchService,
-    FanartService,
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		SingleDisplayComponent,
+		PageNotFound404Component,
+		CapitalizePipe,
+		CardStyleComponent,
+		LoadingSpinnerComponent,
+		PostersComponent,
+		PlotComponent,
+		IntroHeaderComponent,
+		MoviefactsComponent,
+		FooterComponent,
+		HeaderComponent,
+		NavbarComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpModule,
+		FormsModule,
+		BrowserAnimationsModule,
+		TruncateModule,
+		MessageModule,
+		MessagesModule,
+		RouterModule.forRoot(appRoutes),
+		GrowlModule
+	],
+	providers: [
+		SearchService,
+		FanartService,
+		{ provide: ErrorHandler, useClass: AppErrorHandler },
+		MessageService
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

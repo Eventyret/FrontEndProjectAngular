@@ -1,10 +1,9 @@
-import { AppError } from "./app.error";
 import { Injectable, EventEmitter } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import { environment } from "./../../environments/environment";
 import { Http, Response } from "@angular/http";
 import "rxjs/add/operator/map";
-import { BadInput } from "./bad-input";
+import "rxjs/add/observable/throw";
 
 @Injectable()
 export class FanartService {
@@ -19,12 +18,9 @@ export class FanartService {
 		return this.http
 			.get(this.API_URL + imdbID + this.endstring)
 			.map(res => res.json())
-			.catch((error: Response) => {
-					if (error.status === 400) {
-						return Observable.throw(new BadInput(error.json()));
-					} else {
-						return Observable.throw(new AppError(error.json()));
-					}
-			});
+			.catch(this.handleError);
+	}
+	private handleError(error: Response) {
+		return Observable.throw(error);
 	}
 }

@@ -1,11 +1,8 @@
-import { AppError } from "./../../services/app.error";
 import { Component, OnInit } from "@angular/core";
 import { TruncateModule } from "ng2-truncate";
 import { CapitalizePipe } from "../../capitalize.pipe";
 import * as _ from "lodash";
 import { SearchService } from "../../services/search.service";
-import { forEach } from "@angular/router/src/utils/collection";
-import { NotFoundError } from "../../services/not-found-error";
 
 @Component({
 	selector: "app-search-page",
@@ -61,29 +58,18 @@ export class CardStyleComponent implements OnInit {
 			data => {
 				this.handleSuccess(data);
 			},
-			(error: AppError) => {
-				if (error instanceof NotFoundError) {
-					alert("This is a 404 error");
-				} else {
-					throw error;
-				}
+			error => {
+				throw error;
 			}
 		);
 	}
 
 	checkOwnMovies() {
-		return this.searchService.checkMovies().subscribe(
-			info => {
+		return this.searchService.checkMovies().subscribe(info => {
 				this.handleOwnMovies(info);
-			},
-			(error: AppError) => {
-				if (error instanceof NotFoundError) {
-					alert("This is a 404 error");
-				} else {
-					throw error;
-				}
-			}
-		);
+			}, error => {
+				throw error;
+			});
 	}
 
 	/**
