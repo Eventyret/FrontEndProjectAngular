@@ -44,12 +44,19 @@ export class SingleDisplayComponent implements OnInit {
 		} else {
 			console.log("Its undefined");
 		}
-
+	}
+	posterError(poster) {
+		if (poster === "N/A") {
+			return "../../../assets/404PosterNotFound.jpg";
+		} else {
+			return poster;
+		}
 	}
 
 	singleMovie() {
 		this.searchService.getSingleMovie(this.imdbID).subscribe(
 			movie => {
+				console.log(movie);
 				this.movie = movie;
 				this.Title = movie.Title;
 				this.actors = movie.Actors.split(",");
@@ -57,12 +64,9 @@ export class SingleDisplayComponent implements OnInit {
 				this.ratings = movie.Ratings;
 				this.showSpinner = false;
 			},
-			(error: Response) => {
-				if (error.status === 404) {
-					alert("Error 404");
-				} else {
-					throw error;
-				}
+			error => {
+				console.log(error);
+				throw error;
 			}
 		);
 	}
