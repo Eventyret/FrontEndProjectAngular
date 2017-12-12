@@ -9,7 +9,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SingleDisplayComponent } from "./pages/info-page/info-page";
 import { RouterModule, Routes } from "@angular/router";
-import { PageNotFoundComponent } from "./pages/page-not-found-404/page-not-found-404.component";
+import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found";
 import { CapitalizePipe } from "./capitalize.pipe";
 import { CardStyleComponent } from "./pages/search-page/search-page";
 import { LoadingSpinnerComponent } from "./components/loading-spinner/loading-spinner.component";
@@ -20,10 +20,8 @@ import { MoviefactsComponent } from "./info-components/moviefacts/moviefacts.com
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
-import { MessageModule, MessagesModule, GrowlModule } from "primeng/primeng";
 import { ErrorHandler } from "@angular/core";
-import { AppErrorHandler } from "./services/errors/appErrorHandler";
-import { MessageService } from "primeng/components/common/messageservice";
+import { QuotesService } from "./services/quotes.service";
 
 const appRoutes: Routes = [
 	{ path: "", component: CardStyleComponent },
@@ -53,16 +51,13 @@ const appRoutes: Routes = [
 		FormsModule,
 		BrowserAnimationsModule,
 		TruncateModule,
-		MessageModule,
-		MessagesModule,
 		RouterModule.forRoot(appRoutes),
-		GrowlModule
+
 	],
 	providers: [
 		SearchService,
 		FanartService,
-		{ provide: ErrorHandler, useClass: AppErrorHandler },
-		MessageService
+		QuotesService
 	],
 	bootstrap: [AppComponent]
 })

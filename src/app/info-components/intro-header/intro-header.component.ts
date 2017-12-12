@@ -1,4 +1,4 @@
-import { PageNotFoundComponent } from "./../../pages/page-not-found-404/page-not-found-404.component";
+import { PageNotFoundComponent } from "./../../pages/page-not-found/page-not-found";
 import { Component, OnInit } from "@angular/core";
 import { FanartService } from "./../../services/fanart.service";
 import { SearchService } from "../../services/search.service";
@@ -37,12 +37,12 @@ export class IntroHeaderComponent implements OnInit {
 				this.artwork = artwork;
 				this.posters = artwork.movieposter;
 				this.backgroundimage = artwork.moviebackground[0].url;
-				document.getElementById("page-top").style.backgroundImage =
-					"url("" + this.backgroundimage + "")";
+				/* document.getElementById("page-top").style.backgroundImage =
+					"url("" + this.backgroundimage + "")"; */
 				this.showSpinner = true;
 			},
 			error => {
-				this.router.navigate(["404"]);
+				this.router.navigate(["not-found"]);
 				console.log(error);
 				throw error;
 			}
