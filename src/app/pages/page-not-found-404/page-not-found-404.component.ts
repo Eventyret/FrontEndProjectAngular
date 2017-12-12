@@ -1,42 +1,40 @@
+
 import { Component, OnInit } from "@angular/core";
+import { QuotesService } from "../../services/quotes.service";
+import "rxjs/operators/map";
 
 @Component({
-  selector: "app-page-not-found-404",
-  templateUrl: "./page-not-found-404.component.html",
-  styleUrls: ["./page-not-found-404.component.css"]
+	selector: "page-not-found",
+	templateUrl: "./page-not-found.component.html",
+	styleUrls: ["./page-not-found.component.scss"]
 })
-export class PageNotFound404Component implements OnInit {
-  constructor() {}
+export class PageNotFoundComponent implements OnInit {
+	quotesArray: any[];
+	text: string;
 
-  ngOnInit() {}
-}
+	constructor(private service: QuotesService) {}
 
-function quotes() {
-  let quotes = [
-    "I'll be back (The Terminator)",
-    "I'll make him an offer he can't refuse. (Godfather)",
-    "Why so serious? (The Dark Knight)",
-    "The name's Bond. James Bond. (Dr. No)",
-    "He-e-e-e-re's Johnny! (The Shining)",
-    "We're gonna need a bigger boat. (Jaws)",
-    "You can't handle the truth! (A Few Good Men)",
-    "Was it over when the German's bombed Pearl harbour (Animal house)",
-    "To infinity - and Beyond. (Toy Story)",
-    "Say hello to my little friend! (Scarface)",
-    "Frankly, my dear, I don't give a damn! (Gone With the Wind)",
-    "Here's looking at you, kid. (Casablanca)",
-    "You talkin' to me? (Taxi Driver)",
-    "I see dead people. (The Sixth Sense)",
-    "Hasta la vista, baby. (Terminator 2: Judgment Day)",
-    "You want to be a big cop in a small town? F@ck off up the model village then (Hot Fuzz)",
-    "My precious. (The Lord of the Rings)",
-    "I love the smell of napalm in the morning. (Apocalypse Now)",
-    "Did everyone see that, because I will not be doing it again? (Pirates of the Caribbean: On Strabger Tides)",
-    "Life is like a box of chocolates. (Forrest Gump)",
-    "I'm the King of the World! (Titanic)",
-    "Houston - we have a problem. (Apollo 13)",
-    "I am your father. (The Empire Strikes Back)"
-  ];
-  let random = quotes[Math.floor(Math.random() * quotes.length)];
-  document.getElementById("quotes").innerHTML = random;
+	ngOnInit() {
+		this.getData();
+	}
+
+	/**
+	 * Getting the data from the service
+	 */
+	getData() {
+		this.service.getQuotes().subscribe(quote => {
+			this.quotesArray = quote.data;
+			// console.log(this.quotesArray); // for debugging
+		});
+	}
+
+	/**
+	 * When a user clicks the new quote it will get a new quote from the service
+	 */
+	quotes() {
+		const random = Math.floor(Math.random() * this.quotesArray.length);
+		const randomElement = this.quotesArray[random];
+		// console.log(randomElement); // for debugging
+		this.text = randomElement;
+	}
 }
