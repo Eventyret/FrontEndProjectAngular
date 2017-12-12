@@ -16,7 +16,7 @@
                     <div class="card">
                       <div class="header"></div>
                       <div class="avatar">
-                        <img src="{{info.image}}" alt="{{info.name}} as {{info.character}}" onError="this.src='../../../assets/notfound.jpg'">
+                        <img src="{{info.image}}" alt="{{info.name}} as {{info.character}}" onError="this.src="../../../assets/notfound.jpg"">
                       </div>
                       <div class="content">
                         <p>{{info.name | words : 3}}
@@ -67,7 +67,7 @@
   </footer> -->
 
 
-<!-- <div [style.backgroundImage]="'url('+ movie.imageUrl +')'"></div> -->
+<!-- <div [style.backgroundImage]=""url("+ movie.imageUrl +")""></div> -->
   <loading-spinner *ngIf="showSpinner"></loading-spinner>
 <article>
 <div class="row">

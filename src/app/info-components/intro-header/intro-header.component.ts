@@ -38,7 +38,7 @@ export class IntroHeaderComponent implements OnInit {
 				this.posters = artwork.movieposter;
 				this.backgroundimage = artwork.moviebackground[0].url;
 				document.getElementById("page-top").style.backgroundImage =
-					"url('" + this.backgroundimage + "')";
+					"url("" + this.backgroundimage + "")";
 				this.showSpinner = true;
 			},
 			error => {

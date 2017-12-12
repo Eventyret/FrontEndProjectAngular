@@ -6,7 +6,7 @@ import "rxjs/operators/map";
 @Component({
 	selector: "page-not-found",
 	templateUrl: "./page-not-found.component.html",
-	styleUrls: ["./page-not-found.component.scss"]
+	styleUrls: ["./page-not-found.component.css"]
 })
 export class PageNotFoundComponent implements OnInit {
 	quotesArray: any[];

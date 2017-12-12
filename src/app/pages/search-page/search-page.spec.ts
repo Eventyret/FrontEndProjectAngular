@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CardStyleComponent } from './card-style.component';
+import { CardStyleComponent } from "./card-style.component";
 
-describe('CardStyleComponent', () => {
+describe("CardStyleComponent", () => {
   let component: CardStyleComponent;
   let fixture: ComponentFixture<CardStyleComponent>;
 
@@ -19,7 +19,7 @@ describe('CardStyleComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

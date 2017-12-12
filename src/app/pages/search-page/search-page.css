@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Kumar+One');
+@import url("https://fonts.googleapis.com/css?family=Kumar+One");
 html {
   height: 100%;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 .row-section h2 span {
-  font-family: 'Kumar One', cursive;
+  font-family: "Kumar One", cursive;
   display: block;
   font-size: 45px;
   text-transform: none;
@@ -96,7 +96,7 @@ background: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.75) 0%, rgba(183, 28
 background: -o-linear-gradient(270deg, rgba(0, 0, 0, 0.75) 0%, rgba(183, 28, 28, 1) 100%);
 background: -ms-linear-gradient(270deg, rgba(0, 0, 0, 0.75) 0%, rgba(183, 28, 28, 1) 100%);
 background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(183, 28, 28, 1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#b71c1c', GradientType=0);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#000000", endColorstr="#b71c1c", GradientType=0);
 }
 
 .card-01.height-fix .card-img-overlay.match {
@@ -108,7 +108,7 @@ background: -webkit-linear-gradient(270deg, rgba(0, 0, 0, 0.75) 0%, rgba(27, 94,
 background: -o-linear-gradient(270deg, rgba(0, 0, 0, 0.75) 0%, rgba(27, 94, 32, 1) 100%);
 background: -ms-linear-gradient(270deg, rgba(0, 0, 0, 0.75) 0%, rgba(27, 94, 32, 1) 100%);
 background: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(27, 94, 32, 1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#1B5E20', GradientType=0);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#000000", endColorstr="#1B5E20", GradientType=0);
 }
 
 
