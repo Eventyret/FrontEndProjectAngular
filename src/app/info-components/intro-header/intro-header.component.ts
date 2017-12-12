@@ -1,4 +1,4 @@
-import { PageNotFound404Component } from "./../../pages/page-not-found-404/page-not-found-404.component";
+import { PageNotFoundComponent } from "./../../pages/page-not-found-404/page-not-found-404.component";
 import { Component, OnInit } from "@angular/core";
 import { FanartService } from "./../../services/fanart.service";
 import { SearchService } from "../../services/search.service";
