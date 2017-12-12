@@ -28,6 +28,8 @@ export class CardStyleComponent implements OnInit {
 	 */
 	handleSuccess(data) {
 		this.omdbMovies = data.Search;
+		let uniqueList = _.uniqBy(this.omdbMovies, data.Search.imdbID);
+		console.log(uniqueList);
 		this.omdbMovies.forEach(movie => {
 			const movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
 			if (movies.length) {
@@ -65,11 +67,14 @@ export class CardStyleComponent implements OnInit {
 	}
 
 	checkOwnMovies() {
-		return this.searchService.checkMovies().subscribe(info => {
+		return this.searchService.checkMovies().subscribe(
+			info => {
 				this.handleOwnMovies(info);
-			}, error => {
+			},
+			error => {
 				throw error;
-			});
+			}
+		);
 	}
 
 	/**

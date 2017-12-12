@@ -6,6 +6,7 @@ export class AppErrorHandler implements ErrorHandler {
 	constructor(private messageService: MessageService) {}
 	msgs: any;
 	handleError(error: Response) {
+		console.log(error);
 		if (error.status in [500, 503, 504, 502]) {
 			this.msgs = this.messageService.add({
 				severity: "info",

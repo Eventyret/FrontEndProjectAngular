@@ -5,7 +5,7 @@ import { SearchService } from "../../services/search.service";
 import { Router } from "@angular/router";
 
 @Component({
-	selector: "app-intro-header",
+	selector: "intro-header",
 	templateUrl: "./intro-header.component.html",
 	styleUrls: [
 		"../../pages/info-page/info-page.css",
