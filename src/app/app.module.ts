@@ -9,7 +9,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { SingleDisplayComponent } from "./pages/info-page/info-page";
 import { RouterModule, Routes } from "@angular/router";
-import { PageNotFound404Component } from "./pages/page-not-found-404/page-not-found-404.component";
+import { PageNotFoundComponent } from "./pages/page-not-found-404/page-not-found-404.component";
 import { CapitalizePipe } from "./capitalize.pipe";
 import { CardStyleComponent } from "./pages/search-page/search-page";
 import { LoadingSpinnerComponent } from "./components/loading-spinner/loading-spinner.component";
@@ -28,14 +28,14 @@ import { MessageService } from "primeng/components/common/messageservice";
 const appRoutes: Routes = [
 	{ path: "", component: CardStyleComponent },
 	{ path: "info", component: SingleDisplayComponent },
-	{ path: "404", component: PageNotFound404Component }
+	{ path: "not-found", component: PageNotFoundComponent }
 ];
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		SingleDisplayComponent,
-		PageNotFound404Component,
+		PageNotFoundComponent,
 		CapitalizePipe,
 		CardStyleComponent,
 		LoadingSpinnerComponent,
