@@ -27,8 +27,8 @@
 
 				<div class="card">
 					<img class="card-img-top" [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
-					<div class="card-block">
-						<h4 class="card-title mt-3">{{movie.Title | truncate : 18}}</h4>
+					<div class="card-block text-nowrap">
+						<h4 class="card-title mt-3">{{movie.Title}}</h4>
 						<div class="meta">
 							<a>{{movie.Year}}</a>
 						</div>
@@ -36,13 +36,16 @@
 							Tawshif is a web designer living in Bangladesh.
 						</div>
 					</div>
-					<div class="card-footer" *ngIf="movie.matched">
-						<i class="fa fa-check-circle fa-2x float-left"></i>
+					<div class="card-footer match" *ngIf="movie.matched">
+						<i class="fa fa-check-circle fa-inverse fa-2x float-left"></i>
 						<button class="btn btn-secondary float-right btn-sm">show</button>
 					</div>
-					<div class="card-footer" *ngIf="!movie.matched">
-						<i class="fa fa-times-circle fa-2x float-left"></i>
-						<button class="btn btn-secondary float-right btn-sm">show</button>
+					<div class="card-footer nomatch" *ngIf="!movie.matched">
+						<div class="d-flex justify-content-around">
+						<i class="fa fa-times-circle fa-inverse fa-2x"></i>
+						<button class="btn btn-primary btn-sm">{{movie.Type | capitalize}} Info</button>
+						<button class="btn btn-success btn-sm">Send to Libary</button>
+						</div>
 					</div>
 				</div>
 			</div>
