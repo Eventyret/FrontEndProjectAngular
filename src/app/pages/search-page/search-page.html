@@ -1,65 +1,52 @@
-
 <section class="row-section">
-  <div class="container">
-    <div class="row">
-      <h2 class="text-center">
-        <a routerLink="/">
-          <span>RSSA</span>
-        </a>Created with
-        <i class="fa fa-heart" style="color:red;"></i> from Simen Daehlin
-      </h2>
-    </div>
-      <div class="col-xs-12">
-        <div class="jumbotron vertical-center" id="search">
-          <form id="searchForm">
-            <div class="input-group input-group-lg">
-              <input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" ngModel name="search" #search="ngModel" placeholder="Search for any move or series and press enter..." autofocus required [attr.disabled]="showSpinner == true ? false : null">
-              <span class="input-group-btn">
-                <input type="submit" id="searchbutton" (click)="searchMovies(searchQuery)" class="btn btn-primary"
-                  value="Go"[disabled]="!search.valid">
-              </span>
-            </div>
-          </form>
-        </div>
-      </div>
-      <loading-spinner *ngIf="showSpinner"></loading-spinner>
-      <div class="row">
-      <div class="col-md-4" *ngFor="let movie of omdbMovies | slice:0:9;">
-        <div *ngIf="movie.matched; then match else nomatch"></div>
-        <ng-template #match>
+	<div class="container">
+		<div class="row">
+			<h2 class="text-center">
+				<a routerLink="/">
+					<span>RSSA</span>
+				</a>Created with
+				<i class="fa fa-heart" style="color:red;"></i> from Simen Daehlin
+			</h2>
+		</div>
+		<div class="col-xs-12">
+			<div class="jumbotron vertical-center" id="search">
+				<form id="searchForm">
+					<div class="input-group input-group-lg">
+						<input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" ngModel name="search" #search="ngModel"
+						 placeholder="Search for any move or series and press enter..." autofocus required [attr.disabled]="showSpinner == true ? false : null">
+						<span class="input-group-btn">
+							<input type="submit" id="searchbutton" (click)="searchMovies(searchQuery)" class="btn btn-primary" value="Go" [disabled]="!search.valid">
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+		<loading-spinner *ngIf="showSpinner"></loading-spinner>
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-lg-4 mt-4" *ngFor="let movie of omdbMovies | slice:0:9;">
 
-        <div class="card card-01 height-fix">
-		<img class="card-img-top" [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
+				<div class="card">
+					<img class="card-img-top" [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
+					<div class="card-block">
+						<h4 class="card-title mt-3">{{movie.Title | truncate : 18}}</h4>
+						<div class="meta">
+							<a>{{movie.Year}}</a>
+						</div>
+						<div class="card-text">
+							Tawshif is a web designer living in Bangladesh.
+						</div>
+					</div>
+					<div class="card-footer" *ngIf="movie.matched">
+						<i class="fa fa-check-circle fa-2x float-left"></i>
+						<button class="btn btn-secondary float-right btn-sm">show</button>
+					</div>
+					<div class="card-footer" *ngIf="!movie.matched">
+						<i class="fa fa-times-circle fa-2x float-left"></i>
+						<button class="btn btn-secondary float-right btn-sm">show</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-          <div class="card-img-overlay match">
-                      <h4 class="card-title text-center">
-                        <strong>{{movie.Title | truncate :  18}}</strong>2
-                      </h4>
-            <div class="d-flex justify-content-md-center">
-                <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info btn-block" routerLink="/info"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
-            </div>
-          </div>
-        </div>
-        </ng-template>
-          <ng-template #nomatch>
-          <div class="card card-01 height-fix">
-            <img class="card-img-top" [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
-
-            <div class="card-img-overlay nomatch">
-              <h4 class="card-title text-center">
-                <strong>{{movie.Title | truncate : 18}}</strong>
-              </h4>
-              <div class="d-flex justify-content-md-center">
-                <div class="btn-group" role="group">
-                <button type="button" (click)="storeMovie(movie.imdbID, movie.Type)" class="btn btn-outline-info" routerLink="/info"><i class="fa fa-info-circle"></i> {{movie.Type | capitalize}} Details</button>
-                  <button class="btn btn-outline-success" (click)="showSuccess()"><i class="fa fa-cloud-download"></i> Send to Libary</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          </ng-template>
-      </div>
-    </div>
-
-  </div>
+	</div>
 </section>
