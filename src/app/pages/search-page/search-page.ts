@@ -14,6 +14,7 @@ export class CardStyleComponent implements OnInit {
 	radarrMovies: any[];
 	mergedMovies: any[];
 	imdbID: any[];
+	overview: any[];
 	type: string;
 	statusMsg: string;
 	movies: Object;
@@ -28,7 +29,7 @@ export class CardStyleComponent implements OnInit {
 	 */
 	handleSuccess(data) {
 		this.omdbMovies = data.Search;
-		let uniqueList = _.uniqBy(this.omdbMovies, data.Search.imdbID);
+		const uniqueList = _.uniqBy(this.omdbMovies, data.Search.imdbID);
 		console.log(uniqueList);
 		this.omdbMovies.forEach(movie => {
 			const movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
