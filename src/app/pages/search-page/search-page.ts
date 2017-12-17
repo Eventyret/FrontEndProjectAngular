@@ -12,9 +12,8 @@ import { ModalComponent } from "../../components/modal/modal.component";
 	styleUrls: ["./search-page.css"]
 })
 export class CardStyleComponent implements OnInit {
-	omdbMovies: any[];
+	searchResults: any[];
 	radarrMovies: any[];
-	mergedMovies: any[];
 	imdbID: any[];
 	overview: any[];
 	type: string;
@@ -23,7 +22,6 @@ export class CardStyleComponent implements OnInit {
 	showSpinner = true;
 	bsModalRef: BsModalRef;
 
-
 	constructor(private searchService: SearchService, private modalService: BsModalService) {}
 
 	/**
@@ -31,10 +29,10 @@ export class CardStyleComponent implements OnInit {
 	 * @param data the movies the user searched for
 	 */
 	handleSuccess(data) {
-		this.omdbMovies = data.Search;
-		const uniqueList = _.uniqBy(this.omdbMovies, data.Search.imdbID);
-		console.log(uniqueList);
-		this.omdbMovies.forEach(movie => {
+		this.searchResults = data.Search;
+		this.searchResults = _.uniqBy(this.searchResults, "imdbID");
+		console.log(this.searchResults);
+		this.searchResults.forEach(movie => {
 			const movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
 			if (movies.length) {
 				movie.matched = true;
@@ -48,7 +46,7 @@ export class CardStyleComponent implements OnInit {
 	/**
 	 * This will filter out our movies towards what
 	 * the user has searched for
-	 * @param info this is the library   from Radarr
+	 * @param info this is the library from Radarr
 	 */
 	handleOwnMovies(info) {
 		this.radarrMovies = info;
@@ -91,6 +89,8 @@ export class CardStyleComponent implements OnInit {
 		sessionStorage.setItem("imdbID", imdbID);
 		sessionStorage.setItem("type", type);
 		sessionStorage.setItem("movieInfo", JSON.stringify(this.movies[imdbID]));
+		console.log(this.movies[overview]);
+		this.openModalWithComponent();
 	}
 
 	posterError(poster) {
@@ -106,7 +106,7 @@ export class CardStyleComponent implements OnInit {
 	}
 
 	openModalWithComponent() {
-		this.bsModalRef = this.modalService.show(ModalComponent, {class: "modal-lg"});
+		this.bsModalRef = this.modalService.show(ModalComponent, { class: "modal-lg" });
 		this.bsModalRef.content.title = "Modal with component";
 	}
 }

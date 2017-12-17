@@ -23,7 +23,7 @@
 		</div>
 		<loading-spinner *ngIf="showSpinner"></loading-spinner>
 		<div class="row">
-			<div class="col-sm-6 col-md-4 col-lg-4 mt-4" *ngFor="let movie of omdbMovies | slice:0:9;">
+			<div class="col-sm-6 col-md-4 col-lg-4 mt-4" *ngFor="let movie of searchResults | slice:0:9;">
 
 				<div class="card">
 					<img class="card-img-top" [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
@@ -43,7 +43,7 @@
 					<div class="card-footer nomatch" *ngIf="!movie.matched">
 						<div class="d-flex justify-content-around">
 						<i class="fa fa-times-circle fa-inverse fa-2x"></i>
-						<button class="btn btn-primary btn-sm" (click)="openModalWithComponent()">{{movie.Type | capitalize}} Info</button>
+						<button class="btn btn-primary btn-sm" (click)="storeMovie(movie.imdbID, movie.Type)">{{movie.Type | capitalize}} Info</button>
 						<button class="btn btn-success btn-sm">Send to Libary</button>
 						</div>
 					</div>
