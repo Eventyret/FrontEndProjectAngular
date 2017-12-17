@@ -15,7 +15,6 @@ export class CardStyleComponent implements OnInit {
 	searchResults: any[];
 	radarrMovies: any[];
 	imdbID: any[];
-	overview: any[];
 	type: string;
 	statusMsg: string;
 	movies: Object;
@@ -89,7 +88,6 @@ export class CardStyleComponent implements OnInit {
 		sessionStorage.setItem("imdbID", imdbID);
 		sessionStorage.setItem("type", type);
 		sessionStorage.setItem("movieInfo", JSON.stringify(this.movies[imdbID]));
-		console.log(this.movies[overview]);
 		this.openModalWithComponent();
 	}
 
