@@ -1,6 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
-import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
@@ -8,7 +8,7 @@ import * as _ from "lodash";
 
 @Injectable()
 export class SearchService {
-	constructor(private http: Http) {}
+	constructor(private http: HttpClient) {}
 
 	private query: string;
 	private imdbID: string;
@@ -21,27 +21,26 @@ export class SearchService {
 
 	private handleError(error: Response) {
 		console.log(error);
-			return Observable.throw(error);
-		}
+		return Observable.throw(error);
+	}
 
-	getMovies(query) {
-		return this.http
-			.get(this.OMDB_URL + "?s=" + query + this.OMDB_STRING + "&type=movie")
-			.map(res => res.json())
-			.catch(this.handleError);
+	getMovies(query: Response) {
+		return this.http.get <any>(this.OMDB_URL + "?s=" + query + this.OMDB_STRING + "&type=movie")
+				.map(res => res)
+				.catch(this.handleError);
 	}
 
 	getSingleMovie(imdbID) {
 		return this.http
-			.get(this.OMDB_URL + "?i=" + imdbID + this.OMDB_STRING + "&plot=full")
-			.map(res => res.json())
+			.get<any>(this.OMDB_URL + "?i=" + imdbID + this.OMDB_STRING + "&plot=full")
+			.map(res => res)
 			.catch(this.handleError);
 	}
 
 	checkMovies() {
 		return this.http
-			.get(this.RADAR_URL + this.RADAR_STRING)
-			.map(res => res.json())
+			.get<any>(this.RADAR_URL + this.RADAR_STRING)
+			.map(res => res)
 			.catch(this.handleError);
 	}
 }
