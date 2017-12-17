@@ -3,6 +3,8 @@ import { TruncateModule } from "ng2-truncate";
 import { CapitalizePipe } from "../../capitalize.pipe";
 import * as _ from "lodash";
 import { SearchService } from "../../services/search.service";
+import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { ModalComponent } from "../../components/modal/modal.component";
 
 @Component({
 	selector: "app-search-page",
@@ -19,9 +21,10 @@ export class CardStyleComponent implements OnInit {
 	statusMsg: string;
 	movies: Object;
 	showSpinner = true;
-	errorMessage = "";
+	bsModalRef: BsModalRef;
 
-	constructor(private searchService: SearchService) {}
+
+	constructor(private searchService: SearchService, private modalService: BsModalService) {}
 
 	/**
 	 *
@@ -56,7 +59,7 @@ export class CardStyleComponent implements OnInit {
 		this.showSpinner = false;
 	}
 
-	searchMovies(query: string) {
+	searchMovies(query) {
 		return this.searchService.getMovies(query).subscribe(
 			data => {
 				this.handleSuccess(data);
@@ -100,5 +103,10 @@ export class CardStyleComponent implements OnInit {
 
 	ngOnInit() {
 		this.checkOwnMovies();
+	}
+
+	openModalWithComponent() {
+		this.bsModalRef = this.modalService.show(ModalComponent, {class: "modal-lg"});
+		this.bsModalRef.content.title = "Modal with component";
 	}
 }

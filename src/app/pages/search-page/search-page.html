@@ -43,7 +43,7 @@
 					<div class="card-footer nomatch" *ngIf="!movie.matched">
 						<div class="d-flex justify-content-around">
 						<i class="fa fa-times-circle fa-inverse fa-2x"></i>
-						<button class="btn btn-primary btn-sm">{{movie.Type | capitalize}} Info</button>
+						<button class="btn btn-primary btn-sm" (click)="openModalWithComponent()">{{movie.Type | capitalize}} Info</button>
 						<button class="btn btn-success btn-sm">Send to Libary</button>
 						</div>
 					</div>
