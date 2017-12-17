@@ -3,14 +3,14 @@
 	<div class="container">
 
 		<a href="#">
-			<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_cover.jpg" alt="cover" class="cover img-fluid" />
+			<img [src]="posterError(movie.Poster)" alt="{{movie.Title}}">
 		</a>
 
 		<div class="hero">
 
 			<div class="details">
 
-				<div class="title1">The Hobbit
+				<div class="title1">{{movie?.Title}}
 					<span>PG-13</span>
 				</div>
 
