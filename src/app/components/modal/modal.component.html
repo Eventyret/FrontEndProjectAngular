@@ -13,7 +13,7 @@
 				<div class="title1 text-nowrap">{{movie?.Title}}
 					<span>{{movie?.Rated}}</span>
 				</div>
-
+<rating [max]="10" [(ngModel)]="x" [customTemplate]="t" style="color: #0275d8;font-size: 20px;"></rating>
 				<div class="title2 text-nowrap">The Battle of the Five Armies</div>
 				<span class="likes">109 likes</span>
 

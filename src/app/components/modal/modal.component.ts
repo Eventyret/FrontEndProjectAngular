@@ -32,7 +32,6 @@ export class ModalComponent implements OnInit {
 				this.actors = movie.Actors.split(",");
 				this.genres = movie.Genre.split(",");
 				this.languages = movie.Language.replace(/,/g, " /");
-				this.ratings = movie.Ratings;
 				const isLoaded = true;
 			},
 			error => {

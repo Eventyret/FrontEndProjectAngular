@@ -22,7 +22,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { ErrorHandler } from "@angular/core";
 import { QuotesService } from "./services/quotes.service";
-import { ModalModule, BsModalService } from "ngx-bootstrap";
+import { ModalModule, BsModalService, RatingModule } from "ngx-bootstrap";
 import { ModalComponent } from "./components/modal/modal.component";
 
 
@@ -56,7 +56,8 @@ const appRoutes: Routes = [
 		BrowserAnimationsModule,
 		TruncateModule,
 		RouterModule.forRoot(appRoutes),
-		ModalModule.forRoot()
+		ModalModule.forRoot(),
+		RatingModule.forRoot()
 	],
 	providers: [SearchService, FanartService, QuotesService, BsModalService],
 	entryComponents: [ModalComponent],
