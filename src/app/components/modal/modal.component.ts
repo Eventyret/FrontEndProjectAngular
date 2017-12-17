@@ -12,6 +12,11 @@ export class ModalComponent implements OnInit {
 	imdbID: string = sessionStorage.getItem("imdbID");
 	type: string = sessionStorage.getItem("type");
 	movie: any[];
+	actors: any[];
+	languages: string;
+	ratings: any[];
+	genres: any[];
+
 
 	constructor(public bsModalRef: BsModalRef, private searchService: SearchService) {}
 
@@ -24,6 +29,10 @@ export class ModalComponent implements OnInit {
 			movie => {
 				console.log(movie);
 				this.movie = movie;
+				this.actors = movie.Actors.split(",");
+				this.genres = movie.Genre.split(",");
+				this.languages = movie.Language.replace(/,/g, " /");
+				this.ratings = movie.Ratings;
 				const isLoaded = true;
 			},
 			error => {
@@ -38,5 +47,4 @@ export class ModalComponent implements OnInit {
 			return poster;
 		}
 	}
-
 }
