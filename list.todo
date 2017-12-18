@@ -31,12 +31,14 @@ Info Components
   -Infobox
 	✔ Generate Component @done (2017-12-18 07:25:41)
 	☐ Style Component
-	  ☐ Wire up Component
+	✔ Wire up Component @done (2017-12-18 07:38:00)
 
 	  -Modal
 	  ☐ Rating needs Styling
-	  ☐ Wire up Background for header
-	  ☐ Add Runtime and Year  to the spans with genres
+	  ☐ Cover image dynamic
+	  ☐ Wire up with Fanart Service
+	  ☐ Add Runtime and Year
+
   -Buttons
 	☐Generate Component
 	☐ Style Component
