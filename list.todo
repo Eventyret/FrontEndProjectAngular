@@ -29,10 +29,14 @@ Info Components
   	☐ Wire up Component
 
   -Infobox
-	☐Generate Component
+	✔ Generate Component @done (2017-12-18 07:25:41)
 	☐ Style Component
-  	☐ Wire up Component
+	  ☐ Wire up Component
 
+	  -Modal
+	  ☐ Rating needs Styling
+	  ☐ Wire up Background for header
+	  ☐ Add Runtime and Year  to the spans with genres
   -Buttons
 	☐Generate Component
 	☐ Style Component
