@@ -1,5 +1,5 @@
 import { FanartService } from "./services/fanart.service";
-import { HttpModule } from "@angular/http";
+import { HttpClientModule } from "@angular/common/http";
 import { SearchService } from "./services/search.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -22,6 +22,9 @@ import { HeaderComponent } from "./components/header/header.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { ErrorHandler } from "@angular/core";
 import { QuotesService } from "./services/quotes.service";
+import { ModalModule, BsModalService, RatingModule } from "ngx-bootstrap";
+import { ModalComponent } from "./components/modal/modal.component";
+
 
 const appRoutes: Routes = [
 	{ path: "", component: CardStyleComponent },
@@ -43,22 +46,21 @@ const appRoutes: Routes = [
 		MoviefactsComponent,
 		FooterComponent,
 		HeaderComponent,
-		NavbarComponent
+		NavbarComponent,
+		ModalComponent
 	],
 	imports: [
 		BrowserModule,
-		HttpModule,
+		HttpClientModule,
 		FormsModule,
 		BrowserAnimationsModule,
 		TruncateModule,
 		RouterModule.forRoot(appRoutes),
-
+		ModalModule.forRoot(),
+		RatingModule.forRoot()
 	],
-	providers: [
-		SearchService,
-		FanartService,
-		QuotesService
-	],
+	providers: [SearchService, FanartService, QuotesService, BsModalService],
+	entryComponents: [ModalComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}
