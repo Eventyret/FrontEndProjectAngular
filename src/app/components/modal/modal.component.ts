@@ -14,8 +14,8 @@ export class ModalComponent implements OnInit {
 	movie: any[];
 	actors: any[];
 	languages: string;
-	ratings: any[];
 	genres: any[];
+	rating: string;
 
 
 	constructor(public bsModalRef: BsModalRef, private searchService: SearchService) {}
@@ -31,6 +31,8 @@ export class ModalComponent implements OnInit {
 				this.movie = movie;
 				this.actors = movie.Actors.split(",");
 				this.genres = movie.Genre.split(",");
+				this.rating = movie.Ratings[0].Value.substring(0, 1);
+				console.log(this.rating);
 				this.languages = movie.Language.replace(/,/g, " /");
 				const isLoaded = true;
 			},
