@@ -16,7 +16,7 @@ export class ModalComponent implements OnInit {
 	languages: string;
 	genres: any[];
 	rating: string;
-
+	isReadonlyRating = true;
 
 	constructor(public bsModalRef: BsModalRef, private searchService: SearchService) {}
 
