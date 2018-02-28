@@ -3,6 +3,8 @@ import { TruncateModule } from "ng2-truncate";
 import { CapitalizePipe } from "../../capitalize.pipe";
 import * as _ from "lodash";
 import { SearchService } from "../../services/search.service";
+import { BsModalRef, BsModalService } from "ngx-bootstrap";
+import { ModalComponent } from "../../components/modal/modal.component";
 
 @Component({
 	selector: "app-search-page",
@@ -10,27 +12,26 @@ import { SearchService } from "../../services/search.service";
 	styleUrls: ["./search-page.css"]
 })
 export class CardStyleComponent implements OnInit {
-	omdbMovies: any[];
+	searchResults: any[];
 	radarrMovies: any[];
-	mergedMovies: any[];
 	imdbID: any[];
 	type: string;
 	statusMsg: string;
 	movies: Object;
 	showSpinner = true;
-	errorMessage = "";
+	bsModalRef: BsModalRef;
 
-	constructor(private searchService: SearchService) {}
+	constructor(private searchService: SearchService, private modalService: BsModalService) {}
 
 	/**
 	 *
 	 * @param data the movies the user searched for
 	 */
 	handleSuccess(data) {
-		this.omdbMovies = data.Search;
-		let uniqueList = _.uniqBy(this.omdbMovies, data.Search.imdbID);
-		console.log(uniqueList);
-		this.omdbMovies.forEach(movie => {
+		this.searchResults = data.Search;
+		this.searchResults = _.uniqBy(this.searchResults, "imdbID");
+		console.log(this.searchResults);
+		this.searchResults.forEach(movie => {
 			const movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
 			if (movies.length) {
 				movie.matched = true;
@@ -44,7 +45,7 @@ export class CardStyleComponent implements OnInit {
 	/**
 	 * This will filter out our movies towards what
 	 * the user has searched for
-	 * @param info this is the library   from Radarr
+	 * @param info this is the library from Radarr
 	 */
 	handleOwnMovies(info) {
 		this.radarrMovies = info;
@@ -55,7 +56,7 @@ export class CardStyleComponent implements OnInit {
 		this.showSpinner = false;
 	}
 
-	searchMovies(query: string) {
+	searchMovies(query) {
 		return this.searchService.getMovies(query).subscribe(
 			data => {
 				this.handleSuccess(data);
@@ -87,6 +88,7 @@ export class CardStyleComponent implements OnInit {
 		sessionStorage.setItem("imdbID", imdbID);
 		sessionStorage.setItem("type", type);
 		sessionStorage.setItem("movieInfo", JSON.stringify(this.movies[imdbID]));
+		this.openModalWithComponent();
 	}
 
 	posterError(poster) {
@@ -99,5 +101,10 @@ export class CardStyleComponent implements OnInit {
 
 	ngOnInit() {
 		this.checkOwnMovies();
+	}
+
+	openModalWithComponent() {
+		this.bsModalRef = this.modalService.show(ModalComponent, { class: "modal-lg" });
+		this.bsModalRef.content.title = "Modal with component";
 	}
 }
