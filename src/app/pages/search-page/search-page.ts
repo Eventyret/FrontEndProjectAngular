@@ -104,7 +104,10 @@ export class CardStyleComponent implements OnInit {
 	}
 
 	openModalWithComponent() {
-		this.bsModalRef = this.modalService.show(ModalComponent, { class: "modal-lg" });
-		this.bsModalRef.content.title = "Modal with component";
+		const initialState = {
+			title: "Modal opened with component"
+		};
+
+		this.bsModalRef = this.modalService.show(ModalComponent, { initialState, class: "modal-lg" });
 	}
 }
