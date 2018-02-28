@@ -1,0 +1,73 @@
+import { Response } from "@angular/http";
+import { SearchService } from "../../services/search.service";
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+	// tslint:disable-next-line:component-selector
+	selector: "info-page",
+	templateUrl: "./info-page.html",
+	styleUrls: ["./info-page.css"]
+})
+export class SingleDisplayComponent implements OnInit {
+	constructor(private searchService: SearchService) {}
+	// Different Arrays to hold data
+	movie: any[];
+	artwork: any[];
+	posters: any[];
+	actors: any[];
+	genres: any[];
+	ratings: any[];
+	Title: string;
+
+	// Storing data to use in Single-Display Component
+	imdbID: string = sessionStorage.getItem("imdbID");
+	type: string = sessionStorage.getItem("type");
+	movieInfo: any;
+	// Single outputs from arrays
+	Poster: string;
+	backgroundimage: string;
+	slashgenres: string;
+	slashlang: string;
+
+	// Error & Status Messages Messages (Needs cleanup)
+	errorMsg: string;
+	showSpinner = true;
+	extrainfo: any[];
+	cast: any[];
+	loaded = false;
+
+	// Lets grab some extra information for this movie.
+	ngOnInit() {
+		if (sessionStorage["movieInfo"]) {
+			this.movieInfo = JSON.parse(sessionStorage.getItem("movieInfo"));
+			console.log(this.movieInfo);
+		} else {
+			console.log("Its undefined");
+		}
+	}
+	posterError(poster) {
+		if (poster === "N/A") {
+			return "../../../assets/404PosterNotFound.jpg";
+		} else {
+			return poster;
+		}
+	}
+
+	singleMovie() {
+		this.searchService.getSingleMovie(this.imdbID).subscribe(
+			movie => {
+				console.log(movie);
+				this.movie = movie;
+				this.Title = movie.Title;
+				this.actors = movie.Actors.split(",");
+				this.slashlang = movie.Language.replace(/,/g, " /");
+				this.ratings = movie.Ratings;
+				this.showSpinner = false;
+			},
+			error => {
+				console.log(error);
+				throw error;
+			}
+		);
+	}
+}
