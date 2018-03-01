@@ -5,4 +5,5 @@ export interface Movie {
 	Year: String;
 	imdbID: String;
 	matched: Boolean;
+	slug: String;
 }

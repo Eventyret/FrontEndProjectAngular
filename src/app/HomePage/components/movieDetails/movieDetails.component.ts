@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-
 import { BsModalRef } from "ngx-bootstrap";
 import { SearchService } from "../../services/search.service";
+import * as __ from "lodash-addons";
 
 @Component({
 	selector: "app-modal",
@@ -29,6 +29,7 @@ export class MovieDetailsComponent implements OnInit {
 			movie => {
 				console.log(movie);
 				this.movie = movie;
+				movie.slug = __.slugify(movie.Title);
 				this.actors = movie.Actors.split(",");
 				this.genres = movie.Genre.split(",");
 				this.rating = movie.Ratings[0].Value.substring(0, 1);

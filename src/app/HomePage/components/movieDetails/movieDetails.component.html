@@ -60,7 +60,7 @@
 		</div>
 		<!-- end description -->
 
-
+<a [routerLink]="['/details', movie?.imdbID, movie?.slug]" (click)="modalRef.hide()">See Movie</a>
 	</div>
 	<!-- end container -->
 </div>

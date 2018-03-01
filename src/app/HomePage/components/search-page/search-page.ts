@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TruncateModule } from "ng2-truncate";
 import { CapitalizePipe } from "../../../capitalize.pipe";
 import * as _ from "lodash";
+import * as __ from "lodash-addons";
 import { SearchService } from "../../services/search.service";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { MovieDetailsComponent } from "../movieDetails/movieDetails.component";
@@ -33,6 +34,7 @@ export class CardStyleComponent implements OnInit {
 		console.log(this.searchResults);
 		this.searchResults.forEach(movie => {
 			const movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
+			movie.slug = __.slugify(movie.Title)
 			if (movies.length) {
 				movie.matched = true;
 				const inCollection = true;
