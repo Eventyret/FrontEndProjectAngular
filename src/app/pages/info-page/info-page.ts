@@ -1,5 +1,5 @@
 import { Response } from "@angular/http";
-import { SearchService } from "../../services/search.service";
+import { SearchService } from "../../HomePage/services/search.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({

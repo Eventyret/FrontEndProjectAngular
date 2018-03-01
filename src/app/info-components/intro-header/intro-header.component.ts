@@ -1,8 +1,8 @@
-import { PageNotFoundComponent } from "./../../pages/page-not-found/page-not-found";
+import { PageNotFoundComponent } from "../../PageNotFound/components/page-not-found/page-not-found";
 import { Component, OnInit } from "@angular/core";
-import { FanartService } from "./../../services/fanart.service";
-import { SearchService } from "../../services/search.service";
 import { Router } from "@angular/router";
+import { FanartService } from "../../services/fanart.service";
+import { SearchService } from "../../HomePage/services/search.service";
 
 @Component({
 	selector: "intro-header",

@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { TruncateModule } from "ng2-truncate";
-import { CapitalizePipe } from "../../capitalize.pipe";
+import { CapitalizePipe } from "../../../capitalize.pipe";
 import * as _ from "lodash";
 import { SearchService } from "../../services/search.service";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
-import { ModalComponent } from "../../components/modal/modal.component";
+import { MovieDetailsComponent } from "../movieDetails/movieDetails.component";
 
 @Component({
 	selector: "app-search-page",
@@ -108,6 +108,6 @@ export class CardStyleComponent implements OnInit {
 			title: "Modal opened with component"
 		};
 
-		this.bsModalRef = this.modalService.show(ModalComponent, { initialState, class: "modal-lg" });
+		this.bsModalRef = this.modalService.show(MovieDetailsComponent, { initialState, class: "modal-lg" });
 	}
 }

@@ -1,35 +1,32 @@
-import { FanartService } from "./services/fanart.service";
 import { HttpClientModule } from "@angular/common/http";
-import { SearchService } from "./services/search.service";
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { TruncateModule } from "ng2-truncate";
 import { FormsModule } from "@angular/forms";
-import { AppComponent } from "./app.component";
+import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { SingleDisplayComponent } from "./pages/info-page/info-page";
 import { RouterModule, Routes } from "@angular/router";
-import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found";
-import { CapitalizePipe } from "./capitalize.pipe";
-import { CardStyleComponent } from "./pages/search-page/search-page";
-import { LoadingSpinnerComponent } from "./components/loading-spinner/loading-spinner.component";
-import { PostersComponent } from "./info-components/posters/posters.component";
-import { PlotComponent } from "./info-components/plot/plot.component";
-import { IntroHeaderComponent } from "./info-components/intro-header/intro-header.component";
-import { MoviefactsComponent } from "./info-components/moviefacts/moviefacts.component";
-import { FooterComponent } from "./components/footer/footer.component";
-import { HeaderComponent } from "./components/header/header.component";
-import { NavbarComponent } from "./components/navbar/navbar.component";
-import { ErrorHandler } from "@angular/core";
-import { QuotesService } from "./services/quotes.service";
-import { ModalModule, BsModalService, RatingModule } from "ngx-bootstrap";
-import { ModalComponent } from "./components/modal/modal.component";
+import { TruncateModule } from "ng2-truncate";
+import { BsModalService, ModalModule, RatingModule } from "ngx-bootstrap";
 
+import { AppComponent } from "./app.component";
+import { CapitalizePipe } from "./capitalize.pipe";
+import { MovieDetailsComponent } from "./HomePage/components/movieDetails/movieDetails.component";
+import { CardStyleComponent } from "./HomePage/components/search-page/search-page";
+import { SearchService } from "./HomePage/services/search.service";
+import { IntroHeaderComponent } from "./info-components/intro-header/intro-header.component";
+import { SingleDisplayComponent } from "./pages/info-page/info-page";
+import { PageNotFoundComponent } from "./PageNotFound/components/page-not-found/page-not-found";
+import { FanartService } from "./services/fanart.service";
+import { QuotesService } from "./PageNotFound/services/quotes.service";
+import { FooterComponent } from "./shared/components/footer/footer.component";
+import { HeaderComponent } from "./shared/components/header/header.component";
+import { LoadingSpinnerComponent } from "./shared/components/loading-spinner/loading-spinner.component";
+import { NavbarComponent } from "./shared/components/navbar/navbar.component";
+import { DetailsViewComponent } from './DetailsPage/components/details-view/details-view.component';
 
 const appRoutes: Routes = [
 	{ path: "", component: CardStyleComponent },
 	{ path: "info", component: SingleDisplayComponent },
-	{ path: "not-found", component: PageNotFoundComponent }
+	{ path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -40,14 +37,12 @@ const appRoutes: Routes = [
 		CapitalizePipe,
 		CardStyleComponent,
 		LoadingSpinnerComponent,
-		PostersComponent,
-		PlotComponent,
 		IntroHeaderComponent,
-		MoviefactsComponent,
 		FooterComponent,
 		HeaderComponent,
 		NavbarComponent,
-		ModalComponent
+		MovieDetailsComponent,
+		DetailsViewComponent
 	],
 	imports: [
 		BrowserModule,
@@ -60,7 +55,7 @@ const appRoutes: Routes = [
 		RatingModule.forRoot()
 	],
 	providers: [SearchService, FanartService, QuotesService, BsModalService],
-	entryComponents: [ModalComponent],
+	entryComponents: [MovieDetailsComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

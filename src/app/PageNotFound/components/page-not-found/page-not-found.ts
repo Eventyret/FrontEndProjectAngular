@@ -1,7 +1,6 @@
-
 import { Component, OnInit } from "@angular/core";
-import { QuotesService } from "../../services/quotes.service";
 import "rxjs/operators/map";
+import { QuotesService } from "../../services/quotes.service";
 
 @Component({
 	selector: "page-not-found",

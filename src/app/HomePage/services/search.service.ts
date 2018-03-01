@@ -1,16 +1,18 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/operator/map";
+import { Movie } from "./../models/movie";
 import "rxjs/add/operator/catch";
-import * as _ from "lodash";
+import "rxjs/add/operator/map";
+
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+
+import { environment } from "../../../environments/environment";
 
 @Injectable()
 export class SearchService {
 	constructor(private http: HttpClient) {}
 
-	private query: string;
+	private query: Movie;
 	private imdbID: string;
 	private OMDB_KEY: string = environment.OMDB_KEY;
 	private OMDB_URL: string = environment.OMDB_URL;
@@ -24,10 +26,11 @@ export class SearchService {
 		return Observable.throw(error);
 	}
 
-	getMovies(query: Response) {
-		return this.http.get <any>(this.OMDB_URL + "?s=" + query + this.OMDB_STRING + "&type=movie")
-				.map(res => res)
-				.catch(this.handleError);
+	getMovies(query: Movie) {
+		return this.http
+			.get<any>(this.OMDB_URL + "?s=" + query + this.OMDB_STRING + "&type=movie")
+			.map(res => res)
+			.catch(this.handleError);
 	}
 
 	getSingleMovie(imdbID) {

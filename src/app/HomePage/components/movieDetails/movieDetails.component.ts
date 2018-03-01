@@ -1,14 +1,14 @@
-import { SearchService } from "./../../services/search.service";
 import { Component, OnInit } from "@angular/core";
 
 import { BsModalRef } from "ngx-bootstrap";
+import { SearchService } from "../../services/search.service";
 
 @Component({
 	selector: "app-modal",
-	templateUrl: "./modal.component.html",
-	styleUrls: ["./modal.component.css"]
+	templateUrl: "./movieDetails.component.html",
+	styleUrls: ["./movieDetails.component.css"]
 })
-export class ModalComponent implements OnInit {
+export class MovieDetailsComponent implements OnInit {
 	imdbID: string = sessionStorage.getItem("imdbID");
 	type: string = sessionStorage.getItem("type");
 	movie: any[];
