@@ -1,3 +1,4 @@
+import { TmdbService } from "./shared/services/tmdb.service";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
 		ModalModule.forRoot(),
 		RatingModule.forRoot()
 	],
-	providers: [SearchService, FanartService, QuotesService, BsModalService],
+	providers: [SearchService, FanartService, QuotesService, BsModalService, TmdbService],
 	entryComponents: [MovieDetailsComponent],
 	bootstrap: [AppComponent]
 })
