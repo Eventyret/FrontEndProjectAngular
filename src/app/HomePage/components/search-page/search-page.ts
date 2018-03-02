@@ -1,3 +1,4 @@
+import { TmdbService } from "./../../../shared/services/tmdb.service";
 import { Component, OnInit } from "@angular/core";
 import { TruncateModule } from "ng2-truncate";
 import { CapitalizePipe } from "../../../capitalize.pipe";
@@ -6,6 +7,7 @@ import * as __ from "lodash-addons";
 import { SearchService } from "../../services/search.service";
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
 import { MovieDetailsComponent } from "../movieDetails/movieDetails.component";
+import "rxjs/add/operator/filter";
 
 @Component({
 	selector: "app-search-page",
@@ -22,8 +24,15 @@ export class CardStyleComponent implements OnInit {
 	showSpinner = true;
 	bsModalRef: BsModalRef;
 
-	constructor(private searchService: SearchService, private modalService: BsModalService) {}
+	constructor(private searchService: SearchService, private modalService: BsModalService, private tmdbService: TmdbService) {}
 
+	constructTmdbResult(tmdb, movie, index) {
+		this.searchResults[index] = Object.assign({}, movie, tmdb);
+			this.searchResults[index]["backdrop"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["backdrop_path"];
+			this.searchResults[index]["Poster"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["poster_path"];
+			delete this.searchResults[index]["backdrop_path"];
+			delete this.searchResults[index]["poster_path"];
+	}
 	/**
 	 *
 	 * @param data the movies the user searched for
@@ -31,10 +40,20 @@ export class CardStyleComponent implements OnInit {
 	handleSuccess(data) {
 		this.searchResults = data.Search;
 		this.searchResults = _.uniqBy(this.searchResults, "imdbID");
+		this.searchResults.forEach((result, index) => {
+			const imdbId = result.imdbID;
+			this.tmdbService
+				.tmdbInfo(imdbId)
+				.filter(data => data.movie_results.length > 0)
+				.subscribe(tmdbResult => {
+					this.constructTmdbResult(tmdbResult.movie_results[0], result, index);
+
+				});
+		});
 		console.log(this.searchResults);
 		this.searchResults.forEach(movie => {
 			const movies = _.filter(this.radarrMovies, { imdbId: movie.imdbID });
-			movie.slug = __.slugify(movie.Title)
+			movie.slug = __.slugify(movie.Title);
 			if (movies.length) {
 				movie.matched = true;
 				const inCollection = true;

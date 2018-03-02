@@ -54,7 +54,7 @@ a:hover {
 	top: 0;
 	left: 0;
 	background: red;
-	background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg");
+
 	z-index: -1;
 	-webkit-transform: skewY(-2.2deg);
 	transform: skewY(-2.2deg);
@@ -62,6 +62,10 @@ a:hover {
 	transform-origin: 0 0;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
+}
+
+.hero:before.test {
+background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg") !important;
 }
 
 .cover {
