@@ -22,16 +22,17 @@ export class CardStyleComponent implements OnInit {
 	statusMsg: string;
 	movies: Object;
 	showSpinner = true;
+	movieListReady = false;
 	bsModalRef: BsModalRef;
 
 	constructor(private searchService: SearchService, private modalService: BsModalService, private tmdbService: TmdbService) {}
 
 	constructTmdbResult(tmdb, movie, index) {
 		this.searchResults[index] = Object.assign({}, movie, tmdb);
-			this.searchResults[index]["backdrop"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["backdrop_path"];
-			this.searchResults[index]["Poster"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["poster_path"];
-			delete this.searchResults[index]["backdrop_path"];
-			delete this.searchResults[index]["poster_path"];
+		this.searchResults[index]["backdrop"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["backdrop_path"];
+		this.searchResults[index]["Poster"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["poster_path"];
+		delete this.searchResults[index]["backdrop_path"];
+		delete this.searchResults[index]["poster_path"];
 	}
 	/**
 	 *
@@ -47,7 +48,6 @@ export class CardStyleComponent implements OnInit {
 				.filter(data => data.movie_results.length > 0)
 				.subscribe(tmdbResult => {
 					this.constructTmdbResult(tmdbResult.movie_results[0], result, index);
-
 				});
 		});
 		console.log(this.searchResults);
@@ -62,6 +62,7 @@ export class CardStyleComponent implements OnInit {
 				movie.matched = false;
 			}
 		});
+		this.movieListReady = true;
 	}
 	/**
 	 * This will filter out our movies towards what
