@@ -5,107 +5,198 @@
 /*Media Queries for responsive fonts*/
 
 @media all and (max-width: 1200px) {
-  body {
-    font-size: 1.33vw;
-  }
+	body {
+		font-size: 1.33vw;
+	}
 }
 
 @media all and (max-width: 1000px) {
-  body {
-    font-size: 1.6em;
-  }
+	body {
+		font-size: 1.6em;
+	}
 }
 
 @media all and (max-width: 500px) {
-  body {
-    font-size: 3.2vw;
-  }
+	body {
+		font-size: 3.2vw;
+	}
 }
 
 html {
-  height: 100%;
-  font-size: 1rem;
-
+	height: 100%;
+	font-size: 1rem;
 }
-
 
 /*Common styles used on both pages*/
 
 body {
-  min-height: 100%;
-  float: left;
-  width: 100%;
-  background: #2c3e50;
+	min-height: 100%;
+	float: left;
+	width: 100%;
+	background: #2c3e50;
 }
 
 h1 {
-  font-family: "Open Sans";
-  font-size: 40px;
+	font-family: "Open Sans";
+	font-size: 40px;
 }
 
 h2 {
-  font-family: "Open Sans";
-  font-size: 32px;
+	font-family: "Open Sans";
+	font-size: 32px;
 }
 
 h3 {
-  font-family: "Open Sans";
-  font-size: 28px;
+	font-family: "Open Sans";
+	font-size: 28px;
 }
 
 h4 {
-  font-family: "Open Sans";
-  font-size: 24px
+	font-family: "Open Sans";
+	font-size: 24px;
 }
 
 h5 {
-  font-family: "Open Sans";
-  font-size: 20px;
-  font-weight: 600;
+	font-family: "Open Sans";
+	font-size: 20px;
+	font-weight: 600;
 }
 
 p li ul {
-  font-family: "Open Sans";
-  /* Fallback */
-  font-size: 16px;
-  /* For responsiveness */
-  font-size: 2vmin;
+	font-family: "Open Sans";
+	/* Fallback */
+	font-size: 16px;
+	/* For responsiveness */
+	font-size: 2vmin;
 }
 hr.star-light,
 hr.star-primary {
-  margin: 25px auto 30px;
-  padding: 0;
-  max-width: 250px;
-  border: 0;
-  border-top: solid 5px;
-  text-align: center;
+	margin: 25px auto 30px;
+	padding: 0;
+	max-width: 250px;
+	border: 0;
+	border-top: solid 5px;
+	text-align: center;
 }
 
 hr.star-light:after,
 hr.star-primary:after {
-  content: "\f005";
-  display: inline-block;
-  position: relative;
-  top: -.8em;
-  padding: 0 .25em;
-  font-family: FontAwesome;
-  font-size: 2em;
+	content: "\f005";
+	display: inline-block;
+	position: relative;
+	top: -0.8em;
+	padding: 0 0.25em;
+	font-family: FontAwesome;
+	font-size: 2em;
 }
 
 hr.star-light {
-  border-color: #fff;
+	border-color: #fff;
 }
 
 hr.star-light:after {
-  color: #fff;
-  background-color: #18bc9c;
+	color: #fff;
+	background-color: #18bc9c;
 }
 
 hr.star-primary {
-  border-color: #2c3e50;
+	border-color: #2c3e50;
 }
 
 hr.star-primary:after {
-  color: #2c3e50;
-  background-color: #fff;
+	color: #2c3e50;
+	background-color: #fff;
+}
+
+@-webkit-keyframes bounceInDown {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+		-webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -3000px, 0);
+		transform: translate3d(0, -3000px, 0);
+	}
+
+	60% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 25px, 0);
+		transform: translate3d(0, 25px, 0);
+	}
+
+	75% {
+		-webkit-transform: translate3d(0, -10px, 0);
+		transform: translate3d(0, -10px, 0);
+	}
+
+	90% {
+		-webkit-transform: translate3d(0, 5px, 0);
+		transform: translate3d(0, 5px, 0);
+	}
+
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes bounceInDown {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+		-webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -3000px, 0);
+		transform: translate3d(0, -3000px, 0);
+	}
+
+	60% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 25px, 0);
+		transform: translate3d(0, 25px, 0);
+	}
+
+	75% {
+		-webkit-transform: translate3d(0, -10px, 0);
+		transform: translate3d(0, -10px, 0);
+	}
+
+	90% {
+		-webkit-transform: translate3d(0, 5px, 0);
+		transform: translate3d(0, 5px, 0);
+	}
+
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.bounceInDown {
+	-webkit-animation-name: bounceInDown;
+	animation-name: bounceInDown;
+}
+
+.animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+
+.animated.infinite {
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
 }

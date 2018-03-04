@@ -1,3 +1,4 @@
+import { SearchService } from "./../../../HomePage/services/search.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+	searchQuery: string;
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+  }
+
+  searchMovies(query) {
+		this.searchService.getSearchString(query);
   }
 
 }

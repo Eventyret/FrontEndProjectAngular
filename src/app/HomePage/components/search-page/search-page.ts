@@ -22,20 +22,29 @@ export class CardStyleComponent implements OnInit {
 	statusMsg: string;
 	movies: Object;
 	showSpinner = true;
-	bsModalRef: BsModalRef;
+	movieListReady = false;
 
-	constructor(private searchService: SearchService, private modalService: BsModalService, private tmdbService: TmdbService) {}
+	constructor(private searchService: SearchService, private tmdbService: TmdbService) {}
 
-	constructTmdbResult(tmdb, movie, index) {
+
+	/**
+	 * @param tmdb
+	 * @param movie
+	 * @param index
+	 */
+
+	createTmdbResult(tmdb, movie, index) {
 		this.searchResults[index] = Object.assign({}, movie, tmdb);
-			this.searchResults[index]["backdrop"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["backdrop_path"];
-			this.searchResults[index]["Poster"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["poster_path"];
-			delete this.searchResults[index]["backdrop_path"];
-			delete this.searchResults[index]["poster_path"];
+		this.searchResults[index]["backdrop"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["backdrop_path"];
+		this.searchResults[index]["Poster"] = "http://image.tmdb.org/t/p/original/" + this.searchResults[index]["poster_path"];
+		delete this.searchResults[index]["backdrop_path"];
+		delete this.searchResults[index]["poster_path"];
 	}
+
 	/**
 	 *
 	 * @param data the movies the user searched for
+	 *
 	 */
 	handleSuccess(data) {
 		this.searchResults = data.Search;
@@ -46,8 +55,7 @@ export class CardStyleComponent implements OnInit {
 				.tmdbInfo(imdbId)
 				.filter(data => data.movie_results.length > 0)
 				.subscribe(tmdbResult => {
-					this.constructTmdbResult(tmdbResult.movie_results[0], result, index);
-
+					this.createTmdbResult(tmdbResult.movie_results[0], result, index);
 				});
 		});
 		console.log(this.searchResults);
@@ -62,6 +70,7 @@ export class CardStyleComponent implements OnInit {
 				movie.matched = false;
 			}
 		});
+		this.movieListReady = true;
 	}
 	/**
 	 * This will filter out our movies towards what
@@ -109,12 +118,11 @@ export class CardStyleComponent implements OnInit {
 		sessionStorage.setItem("imdbID", imdbID);
 		sessionStorage.setItem("type", type);
 		sessionStorage.setItem("movieInfo", JSON.stringify(this.movies[imdbID]));
-		this.openModalWithComponent();
 	}
 
 	posterError(poster) {
-		if (poster === "N/A") {
-			return "../../../assets/404PosterNotFound.jpg";
+		if (poster === "N/A" || !poster) {
+			return "../../../../assets/404.gif";
 		} else {
 			return poster;
 		}
@@ -122,13 +130,8 @@ export class CardStyleComponent implements OnInit {
 
 	ngOnInit() {
 		this.checkOwnMovies();
-	}
-
-	openModalWithComponent() {
-		const initialState = {
-			title: "Modal opened with component"
-		};
-
-		this.bsModalRef = this.modalService.show(MovieDetailsComponent, { initialState, class: "modal-lg" });
+		this.searchService.searchStringObs.subscribe((searchString: string) => {
+			this.searchMovies(searchString);
+		})
 	}
 }

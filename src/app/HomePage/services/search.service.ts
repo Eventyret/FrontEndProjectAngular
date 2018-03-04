@@ -7,6 +7,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 
 import { environment } from "../../../environments/environment";
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class SearchService {
@@ -21,9 +22,16 @@ export class SearchService {
 	private RADAR_URL: string = environment.RADARR_URL;
 	private RADAR_STRING: string = "?apikey=" + this.RADARR_KEY;
 
+	private searchStringSub: Subject<string> = new Subject<string>();
+	searchStringObs = this.searchStringSub.asObservable();
+
 	private handleError(error: Response) {
 		console.log(error);
 		return Observable.throw(error);
+	}
+
+	getSearchString(query) {
+		this.searchStringSub.next(query);
 	}
 
 	getMovies(query: Movie) {
