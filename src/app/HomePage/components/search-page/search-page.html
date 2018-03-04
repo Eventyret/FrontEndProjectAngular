@@ -9,17 +9,7 @@
 				<i class="fa fa-heart" style="color:red;"></i> from Simen Daehlin
 			</h2>
 		</div>
-		<div class="col-xs-12">
-			<form id="searchForm">
-				<div class="input-group input-group-lg">
-					<input type="text" class="form-control" id="searchText" name="search" [(ngModel)]="searchQuery" ngModel name="search" #search="ngModel"
-					 placeholder="Search for any move or series and press enter..." autofocus required [attr.disabled]="showSpinner == true ? false : null">
-					<span class="input-group-btn">
-						<input type="submit" id="searchbutton" (click)="searchMovies(searchQuery)" class="btn btn-primary" value="Go" [disabled]="!search.valid">
-					</span>
-				</div>
-			</form>
-		</div>
+
 		<div class="cinema-loading"></div>
 		<loading-spinner *ngIf="showSpinner"></loading-spinner>
 	</div>
@@ -28,7 +18,10 @@
 	</div>
 </section>
 <div class="overlay">
-<section class="movie-list" *ngFor="let movie of searchResults | slice:0:9;" [ngStyle]="{'background-image': 'url(' + movie.backdrop + ')'}">
-	{{movie | json}}
+<section class="movie-list" *ngFor="let movie of searchResults | slice:0:9;" [ngStyle]="{'background-image': 'url(' + posterError(movie.backdrop) + ')'}">
+	<div class="movie">
+		<h1 class="text-center movie-title">{{movie.Title}}</h1>
+		<p>{{movie.overview}}</p>
+	</div>
 </section>
 </div>
