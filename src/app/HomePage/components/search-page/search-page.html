@@ -1,3 +1,4 @@
+
 <section class="row-section">
 	<div class="container">
 		<div class="row">
@@ -26,6 +27,8 @@
 		<i class="fa fa-arrow-circle-down animated bounceInDown" aria-hidden="true"></i>
 	</div>
 </section>
+<div class="overlay">
 <section class="movie-list" *ngFor="let movie of searchResults | slice:0:9;" [ngStyle]="{'background-image': 'url(' + movie.backdrop + ')'}">
 	{{movie | json}}
 </section>
+</div>
